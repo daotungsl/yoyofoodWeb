@@ -1,0 +1,70 @@
+
+<div class="container new-feature-search-bar">
+  <div class="logo">
+      <a class="navbar-brand" href="/">
+        <i class="fas fa-gift"></i><strong style="font-family: 'Source Sans Pro', sans-serif;"> YOYOFOOD</strong>
+
+      </a>
+
+  </div>
+  <div class="search-box">
+    <span><i class="fas fa-search"></i></span>
+    <span class="search-box-label mr-2 ml-1">Search</span>
+    <div class="results-box">
+
+      <input type="text" class="search-input" autocomplete="off" placeholder="khuyến mãi, thương hiệu, sản phẩm...">
+    </div>
+    <span><i class="fas fa-map-marker-alt"></i></span>
+    <span class="search-box-label mr-2 ml-1"> In </span>
+    <div>
+      <select name="location" id="home-page-choose-location" class="form-control choose-location">
+        <option *ngFor="let dataCity of dataCities" [value]="dataCity.id">
+          {{dataCity.name}}</option>
+      </select>
+    </div>
+    <div class="user-login">
+        <ul *ngIf="checkLogin" class="navbar-nav align-items-center d-none d-md-flex">
+
+            <li class="nav-item" ngbDropdown placement="bottom-right">
+              <a class="nav-link pr-0" role="button" ngbDropdownToggle>
+                <div class="media align-items-center">
+                  <!-- <span class="avatar avatar-sm rounded-circle">
+                    <img alt="Image placeholder" src="assets/img/theme/team-4-800x800.jpg">
+                  </span> -->
+                  <div class="media-body ml-2 d-none d-lg-block">
+                    <div>
+                        <span class="mb-0 text-sm  font-weight-bold">{{accountUser}}</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+                <!-- <a routerLinkActive="active" [routerLink]="['/shop']" class="dropdown-item">
+                  <i class="fas fa-store"></i>
+                  <span>Cửa Hàng</span>
+                </a> -->
+                
+                <div class="dropdown-divider"></div>
+                <a href="/" (click)="tryLogout()" class="dropdown-item">
+                  <i class="ni ni-user-run"></i>
+                  <span>Logout</span>
+                </a>
+              </div>
+              <a routerLinkActive="active" [routerLink]="['/cart']" class="ml-1" style="color: white;">
+                <i class="fa fa-shopping-cart"></i>
+              </a>
+            </li>
+          </ul>
+          
+      <ng-container *ngIf="!checkLogin"> 
+          <i class="fas fa-user"></i>
+          <a class="ml-1 "style="color: #fff" routerLinkActive="active" routerLink="/user/login">Tài khoản</a>
+      </ng-container>
+               
+          
+    
+
+    </div>
+
+  </div>
+</div>

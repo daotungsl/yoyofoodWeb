@@ -1,0 +1,227 @@
+<!-- Header  -->
+<div class="new-feature-header-detail">
+    <app-header-web></app-header-web>
+
+</div>
+
+<!-- Body  -->
+<div class="content">
+    <div class="container pt-5">
+        <button class="btn btn-info" [routerLink]="" (click)="goBack();"> <i class="fas fa-chevron-left"></i>
+            BACK</button>
+
+        <div class="row">
+            <div class="col-8">
+                <div class="card p-3 bg-white">
+                    <div class="my-0 mx-0 px-0 bg-white"
+                        [ngStyle]="{'height': '320px', 'background-image': 'url('+dataProduct?.data?.image+')', 'background-repeat': 'no-repeat', 'background-size': 'cover', 'background-position': 'center center'}">
+                        <div class="text-white text-center  py-5 px-0">
+                            <div class="py-2">
+                                <!-- Content -->
+                                <div class="card-title rgba-pink-light my-4 py-2">
+                                    <h3 class="mt-1">{{dataProduct?.data.store}}</h3>
+                                    <h5 class="bg-danger">{{dataProduct?.data.percent}}% off</h5>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-3 bg-white mt-3">
+                    <div class="card-header-title">
+                        <div>
+                            <h4 class="text-danger mask-strong"><i class="fas fa-utensils mr-1" aria-hidden="true"></i>
+                                {{dataProduct?.data.name}}</h4>
+                        </div>
+                        <div class="">
+                            Ngày hết hạn:
+                            {{dataProduct?.data.expiredDay |slice:9}}
+
+                        </div>
+                        <div>
+                            Số lượn còn:
+                            {{dataProduct?.data.slotLeft}}
+                            Voucher
+                        </div>
+                        <hr>
+                        <p>{{dataProduct?.data.description}}</p>
+
+                        <hr>
+                        <!-- / Collapsible element -->
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-4">
+                <div class="card">
+
+                    <!--Panel-->
+                    <div class="card text-left">
+                        <div class="card-header danger-color white-text h4">
+                            Đặt hàng
+                        </div>
+                        <div class="card-body">
+                            <form class="text-center" style="color: #757575;" role="form" [formGroup]="formOder"
+                                #myform="ngForm">
+                                <h5>Số lượng</h5>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group" *ngIf="formOder.get('adults') as adults">
+                                            <select class="form-control custom-select browser-default"
+                                                id="input-type-store" [formControl]='adults'>
+
+                                                <option *ngFor="let data of [0,1,2,3,4,5,6,7,8,9,10]" [ngValue]=data>
+                                                    {{data}} 
+                                                </option>
+                                            </select>
+                                            <div>
+                                                <ng-container
+                                                    *ngIf="adults.invalid && adults.dirty || myform.submitted">
+                                                    <div class="text-danger">
+                                                        <span
+                                                            *ngIf="adults.hasError('required')">{{errors.adults.required}}</span>
+                                                    </div>
+
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <!-- <div class="row">
+                                    <div class="col-12">
+                                        <h5>Phương thức thanh toán</h5>
+
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                              <input type="radio" class="form-check-input" name="optradio">Tiền mặt
+                                            </label>
+                                          </div>
+                                          <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                              <input type="radio" class="form-check-input" name="optradio">Thẻ
+                                            </label>
+                                          </div>
+                                    </div>
+
+                                </div> -->
+
+
+
+                                <!--Message-->
+                                <!-- <div class="row">
+                                    <div class="col-12">
+                                        <h5>Ghi chú</h5>
+                                        <div class="form-group" *ngIf="formOder.get('description') as description">
+                                            <textarea id="materialContactFormMessage" class="form-control md-textarea"
+                                                placeholder="Lời nhắn cho cửa hàng ..." rows="3"></textarea>
+                                        </div>
+                                    </div>
+
+                                </div> -->
+
+
+
+                                <!-- Send button -->
+                                <button class="btn btn-outline-danger btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                    (click)="doSubmit()">Thêm vào giỏ hàng</button>
+                                    
+                                
+                                <!-- modal login -->
+                                <ng-template #login let-c="close()" let-d="dismiss()">
+                                    <div class="modal-content">
+                                        <div class="modal-body ">
+                                            <div class="card bg-secondary shadow border-0">
+
+                                                <div class="card-body px-lg-5 py-lg-5">
+                                                    <div class="text-center text-muted mb-4">
+                                                        <h2>Sign in with credentials</h2>
+                                                    </div>
+                                                    <form role="form" [formGroup]="form">
+                                                        <div class="form-group mb-3"
+                                                            *ngIf="form.get('username') as username">
+                                                            <div class="input-group input-group-alternative">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i
+                                                                            class="ni ni-email-83"></i></span>
+                                                                </div>
+                                                                <input class="form-control" placeholder="Email"
+                                                                    [formControl]='username' type="email">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group"
+                                                            *ngIf="form.get('password') as password">
+                                                            <div class="input-group input-group-alternative">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i
+                                                                            class="ni ni-lock-circle-open"></i></span>
+                                                                </div>
+                                                                <input class="form-control" placeholder="Password"
+                                                                    [formControl]="password" type="password">
+                                                                <ng-container
+                                                                    *ngIf="password.invalid && password.dirty">
+                                                                    <span *ngIf="password.hasError('required')">Loi
+                                                                        cmnr</span>
+                                                                </ng-container>
+
+
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="custom-control custom-control-alternative custom-checkbox">
+                                                            <input class="custom-control-input" id=" customCheckLogin"
+                                                                type="checkbox">
+                                                            <label class="custom-control-label" for=" customCheckLogin">
+                                                                <span class="text-muted">Remember me</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <button type="submit" (click)="doLogin()"
+                                                                class="btn btn-primary my-4">Sign in</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-6">
+                                                    <a href="javascript:void(0)" class="text-login"><small>Forgot
+                                                            password?</small></a>
+                                                </div>
+                                                <div class="col-6 text-right">
+                                                    <a [routerLink]="['/user/register']"
+                                                        class="text-login"><small>Create new account</small></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </form>
+                        </div>
+                        <!--                        <div class="card-footer text-muted success-color white-text">-->
+                        <!--                            <p class="mb-0">2 days ago</p>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+                <div class="card text-center mt-3">
+                    <div class="img-thumbnail p-2">
+                        <img [src]="dataProduct?.data.icon" height="80px" width="auto" alt="">
+                    </div>
+                    <span class="p-2">
+                        {{dataProduct?.data.description}}
+                    </span>
+                    <hr>
+                    <a href="#" class="mb-3 text-danger">King BBQ trên YOYOFOOD &gt;&gt;</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Footer  -->
+<div class="footer">
+    <app-footer-web></app-footer-web>
+</div>

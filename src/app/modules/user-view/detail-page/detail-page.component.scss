@@ -1,0 +1,46 @@
+.new-feature-search-bar {
+    height: 98px;
+    background-color:#fe3f44;
+    align-items: center;
+    justify-content: space-between;
+}
+.new-feature-header-detail{
+    border-bottom: 1px solid #ededed;
+    background-color: #fe3f44;
+    position: relative;
+    z-index: 50;
+} 
+.rgba-pink-light, .rgba-pink-light:after {
+    background-color: rgba(233,30,99,.3);
+    color: #fff;
+
+}
+.rgba-pink-light h3 {
+    color: #fff;
+
+}.rgba-pink-light h5 {
+    color: #fff;
+
+}
+.h3, h3 {
+    font-size: 1.75rem;
+}
+.h5, h5 {
+
+    font-size: 1.25rem;
+}
+.h4, h4 {
+    font-size: 1.5rem;
+}
+.danger-color, .stepper li.warning a .circle {
+    background-color: #ff3547!important;
+    color: #fff;
+    text-align: center;
+}
+.success-oder{
+color: green;
+}
+.loading-img{
+    height: auto;
+    width: 50%;
+}

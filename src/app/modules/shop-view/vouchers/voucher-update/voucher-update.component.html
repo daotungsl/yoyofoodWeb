@@ -1,0 +1,241 @@
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+
+          <div class="row">
+
+            <div class="col-xl-12 order-xl-1">
+              <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0">
+                  <div class="row align-items-center">
+                    <div class="col-8">
+                      <h3 class="mb-0">Update Voucher</h3>
+                    </div>
+                    <!-- <div class="col-4 text-right">
+                      <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                    </div> -->
+                  </div>
+                </div>
+                <div class="card-body">
+                  <form role="form" [formGroup]="formVoucherUpdate" #myform="ngForm">
+                    <h6 class="heading-small text-muted mb-4">Voucher information</h6>
+
+                    <div class="pl-lg-4">
+                      <div class="form-group" *ngIf="formVoucherUpdate.get('typeVoucherId') as typeVoucherId">
+                        <select class="form-control form-control-alternative" id="input-type-Voucher" [formControl]='typeVoucherId'>
+                          <option selected disabled="disabled" [value]="null">Type Voucher.</option>
+                          <option *ngFor="let data of datasTypeVoucher" [ngValue]="data.id">
+                            {{data.name}}</option>
+                        </select>
+                        <ng-container *ngIf="typeVoucherId.invalid && typeVoucherId.dirty || myform.submitted">
+                            <div class="text-danger">
+                              <span *ngIf="typeVoucherId.hasError('required')">{{errors.typeVoucherId.required}}</span>
+                            </div>
+                          </ng-container>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="form-group" *ngIf="formVoucherUpdate.get('name') as name">
+                            <label class="form-control-label" for="input-Title">Title</label>
+                            <input type="text" id="input-Title" class="form-control form-control-alternative"
+                              placeholder="Voucher Title" [formControl]='name' [value]="dataEditVoucher?.name">
+                              <ng-container *ngIf="name.invalid && name.dirty || myform.submitted">
+                                  <div class="text-danger">
+                                    <span *ngIf="name.hasError('required')">{{errors.name.required}}</span>
+                                    <span *ngIf="name.hasError('maxlength')">{{errors.name.maxLength}}</span>
+                                  </div>
+                                </ng-container>
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-group" *ngIf="formVoucherUpdate.get('image') as image">
+                            <label class="form-control-label" for="input-image">Image</label>
+                            <input type="text" id="input-image" class="form-control form-control-alternative"
+                              placeholder="Please paste image link..." [formControl]='image'
+                              (input)="getImageFromInput($event)">
+                            <ng-container *ngIf="image.invalid && image.dirty || myform.submitted">
+                              <div class="text-danger">
+                                <span *ngIf="image.hasError('required')">{{errors.image.required}}</span>
+                              </div>
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="form-group" *ngIf="formVoucherUpdate.get('description') as des">
+                            <label for="exampleFormControlTextarea1">Description</label>
+                            <textarea class="form-control " [formControl]='des' [value]="dataEditVoucher?.description" id="exampleFormControlTextarea1" rows="10"></textarea>
+                            <ng-container *ngIf="des.invalid && des.dirty || myform.submitted">
+                                <div class="text-danger">
+                                  <span *ngIf="des.hasError('required')">{{errors.description.required}}</span>
+                                  <span *ngIf="des.hasError('maxlength')">{{errors.description.maxLength}}</span>
+                                </div>
+                              </ng-container>
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <img  [src]="dataEditVoucher?.image" (error)="filename = './assets/img/brand/img-default.png'" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="my-4" />
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group"  *ngIf="formVoucherUpdate.get('percent') as percent">
+                          <label class="form-control-label"  for="input-percent-sale">Percent Sale</label>
+                          <input type="number" id="input-percent-sale" [formControl]='percent' class="form-control form-control-alternative"
+                            placeholder="Percent..." [value]="dataEditVoucher?.percent">
+                            <ng-container *ngIf="percent.invalid && percent.dirty || myform.submitted">
+                                <div class="text-danger">
+                                  <span *ngIf="percent.hasError('required')">{{errors.percent.required}}</span>
+                                </div>
+                              </ng-container>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group"  *ngIf="formVoucherUpdate.get('maxSlot') as maxSlot">
+                          <label class="form-control-label" for="input-max-slot">Max Slot</label>
+                          <input type="number" id="input-max-slot" [formControl]='maxSlot' class="form-control form-control-alternative"
+                          placeholder="Slot..." [value]="dataEditVoucher?.maxSlot">
+                          <ng-container *ngIf="maxSlot.invalid && maxSlot.dirty || myform.submitted">
+                              <div class="text-danger">
+                                <span *ngIf="maxSlot.hasError('required')">{{errors.maxSlot.required}}</span>
+                              </div>
+                            </ng-container>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <!-- Datepicker -->
+                      <div class="col-lg-6">
+                        <div class="input-daterange datepicker row align-items-center">
+
+                          <div class="col">
+                            <div class="form-group" *ngIf="formVoucherUpdate.get('startDay') as startDay" [ngClass]="{'focused':focus3===true}">
+                              <label class="form-control-label" >Start day</label>
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                </div>
+                                <input class="form-control datepicker" placeholder="Select date" name="dp1"
+                                [formControl]='startDay' ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()"
+                                  (select)="mama($event)" type="text" [dayTemplate]="t"
+                                  (dateSelect)="startDateChanged($event)" autocomplete="off" (focus)="focus3=true"
+                                  (blur)="focus3=false" />
+                                <ng-template #t let-date let-focused="focused">
+                                  <span class="custom-day" [class.text-white]="isActive(date)"
+                                    [class.range-end]="isRangeEnd(date)" [class.range-start]="isRangeStart(date)"
+                                    [class.btn-light]="isActive(date)" [class.bg-primary]="isActive(date)"
+                                    [class.range]="isInRange(date)" [class.faded]="isInRange(date)">
+                                    {{ date.day }}
+                                  </span>
+                                </ng-template>
+                              </div>
+                              <ng-container *ngIf="startDay.invalid && startDay.dirty || myform.submitted">
+                                  <div class="text-danger">
+                                    <span *ngIf="startDay.hasError('required')">{{errors.startDay.required}}</span>
+                                  </div>
+                                </ng-container>
+                            </div>
+                          </div>
+
+                          <div class="col">
+                            <div class="form-group" *ngIf="formVoucherUpdate.get('expiredDay') as expiredDay" [ngClass]="{'focused':focus4===true}">
+                              <label class="form-control-label" >End day</label>
+
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                </div>
+                                <input class="form-control datepicker" placeholder="Select date" name="dp2"
+                                [formControl]='expiredDay' ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()"
+                                  (focus)="focus4=true" (blur)="focus4=false" type="text" [dayTemplate]="t1"
+                                  (dateSelect)="endDateChanged($event)" autocomplete="off" />
+                                <ng-template #t1 let-date let-focused="focused">
+                                  <span class="custom-day" [class.text-white]="isActive(date)"
+                                    [class.range-end]="isRangeEnd(date)" [class.range-start]="isRangeStart(date)"
+                                    [class.btn-light]="isActive(date)" [class.bg-primary]="isActive(date)"
+                                    [class.range]="isInRange(date)" [class.faded]="isInRange(date)">
+                                    {{ date.day }}
+                                  </span>
+                                </ng-template>
+                              </div>
+                              <ng-container *ngIf="expiredDay.invalid && expiredDay.dirty || myform.submitted">
+                                  <div class="text-danger">
+                                    <span *ngIf="expiredDay.hasError('required')">{{errors.expiredDay.required}}</span>
+                                  </div>
+                                </ng-container>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                          <div class="input-daterange datepicker row align-items-center">
+  
+                            <div class="col">
+                                <div class="form-group" *ngIf="formVoucherUpdate.get('startTime') as startTime">
+                                    <label class="form-control-label" for="input-max-slot">Start time</label>
+                                    <select  class="form-control form-control-alternative" [formControl]='startTime' id="input-max-slot">
+                                      <option selected disabled="disabled" [value]="null">Choose...</option>
+                                      <option *ngFor="let time of timeSlot" [value]="time">
+                                        {{time}} </option>
+                                    </select>
+                                    <ng-container *ngIf="startTime.invalid && startTime.dirty || myform.submitted">
+                                        <div class="text-danger">
+                                          <span *ngIf="startTime.hasError('required')">{{errors.startTime.required}}</span>
+                                        </div>
+                                      </ng-container>
+                                  </div>
+                            </div>
+  
+                            <div class="col">
+                                <div class="form-group" *ngIf="formVoucherUpdate.get('endTime') as endTime">
+                                    <label class="form-control-label" for="input-max-slot">End time</label>
+                                    <select class="form-control form-control-alternative" [formControl]='endTime' id="input-max-slot">
+                                      <option selected disabled="disabled" [value]="null">Choose...</option>
+                                      <option *ngFor="let time of timeSlot" [value]="time">
+                                        {{time}}</option>
+                                    </select>
+                                    <ng-container *ngIf="endTime.invalid && endTime.dirty || myform.submitted">
+                                        <div class="text-danger">
+                                          <span *ngIf="endTime.hasError('required')">{{errors.endTime.required}}</span>
+                                        </div>
+                                      </ng-container>
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                          </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" (click)="doSubmit()" class="btn btn-icon btn-primary">
+                          <span class="btn-inner--text">Submit</span>
+                        </button>
+                        <button type="reset" class="btn btn-icon btn-warning" type="reset">
+                          <span class="btn-inner--text">Reset</span>
+                        </button>
+                      </div>
+                      <hr class="my-4" />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

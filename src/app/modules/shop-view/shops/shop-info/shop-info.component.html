@@ -1,0 +1,128 @@
+<form role="form" [formGroup]="formShopInfo" #myform="ngForm">
+  <h6 class="heading-small text-muted mb-4">Store information</h6>
+  <div class="pl-lg-4">
+
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group" *ngIf="formShopInfo.get('email') as email">
+          <label class="form-control-label" for="input-email">Email</label>
+          <input type="email" disabled='disabled' id="input-email" class="form-control form-control-alternative"
+            [value]="shopInfo?.data.email">
+          <div>
+            <ng-container *ngIf="email.invalid && email.dirty || myform.submitted">
+              <div class="text-danger">
+                <span *ngIf="email.hasError('required')">{{errors.email.required}}</span>
+                <span *ngIf="email.hasError('email')">{{errors.email.syntax}}</span>
+              </div>
+
+            </ng-container>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formShopInfo.get('phone') as phone">
+          <label class="form-control-label" for="input-phone">Phone</label>
+          <input type="text" disabled='disabled' id="input-phone" class="form-control form-control-alternative"
+            placeholder="Phone" [value]="shopInfo?.data.phone">
+          <div>
+            <ng-container *ngIf="phone.invalid && phone.dirty || myform.submitted">
+              <div class="text-danger">
+                <span *ngIf="phone.hasError('required')">{{errors.phone.required}}</span>
+                <span *ngIf="phone.hasError('pattern')">{{errors.phone.syntax}}</span>
+              </div>
+
+            </ng-container>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="formShopInfo.get('name') as name">
+          <label class="form-control-label" for="input-store-name">Store</label>
+          <input type="text" id="input-store-name" class="form-control form-control-alternative"
+            placeholder="Store name" [value]="shopInfo?.data.name">
+          <div>
+            <ng-container *ngIf="name.invalid && name.dirty || myform.submitted">
+              <div class="text-danger">
+                <span *ngIf="name.hasError('required')">{{errors.name.required}}</span>
+                <span *ngIf="name.hasError('maxlength')">{{errors.name.maxLength}}</span>
+              </div>
+
+            </ng-container>
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="col-lg-6">
+
+        <img class="image-fix" [src]="filename" (error)="filename = './assets/img/brand/img-default.png'" />
+
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group" *ngIf="formShopInfo.get('typeStoreId') as typeStoreId">
+          <label class="form-control-label" for="input-type-store">Type Store</label>
+          <!-- <input type="text" id="input-type-store" class="form-control form-control-alternative" placeholder="Last name" value="Jesse"> -->
+          <select class="form-control form-control-alternative" id="input-type-store" [formControl]='typeStoreId'>
+            <option selected [value]="null">Choose...</option>
+            <option *ngFor="let data of datasTypeStore" [value]="data.id">
+              {{data.name}}</option>
+          </select>
+          <div>
+            <ng-container *ngIf="typeStoreId.invalid && typeStoreId.dirty || myform.submitted">
+              <div class="text-danger">
+                <span *ngIf="typeStoreId.hasError('required')">{{errors.typeStoreId.required}}</span>
+              </div>
+
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group" *ngIf="formShopInfo.get('images') as images">
+          <label class="form-control-label" for="input-images">Image</label>
+          <input type="text" id="input-image" class="form-control form-control-alternative"
+                              placeholder="Please paste image link..." [formControl]='images'
+                              (input)="getImageFromInput($event)">
+          <div>
+            <ng-container *ngIf="images.invalid && images.dirty || myform.submitted">
+              <div class="text-danger">
+                <span *ngIf="images.hasError('required')">{{errors.image.required}}</span>
+              </div>
+
+            </ng-container>
+          </div>
+        </div>
+      </div>
+     
+    </div>
+    <div class="row">
+
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-created-at">Created</label>
+            <input type="text" id="input-created" disabled='disabled' class="form-control form-control-alternative"
+              placeholder="Created at" [value]="shopInfo?.data.created">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-update">Updated</label>
+            <input type="text" id="input-updated" disabled='disabled' class="form-control form-control-alternative"
+              [value]="shopInfo?.data.updated">
+          </div>
+        </div>
+
+      </div>
+  </div>
+  <div class="text-center">
+    <button type="submit" (click)="doSubmit()" class="btn btn-icon btn-primary">
+      <span class="btn-inner--text">Submit</span>
+    </button>
+    <button type="reset" class="btn btn-icon btn-warning" type="reset">
+      <span class="btn-inner--text">Reset</span>
+    </button>
+  </div>
+  <hr class="my-4" />
+
+</form>

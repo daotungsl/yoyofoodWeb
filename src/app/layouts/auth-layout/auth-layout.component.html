@@ -1,0 +1,90 @@
+<div class="main-content">
+  <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+    <div class="container px-4">
+      <!-- <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/']">
+        <img width="50%" height="100%" src="assets/img/brand/logo.png" />
+      </a> -->
+      <a class="navbar-brand login-dea"routerLinkActive="active" [routerLink]="['/']">
+          <i class="fas fa-gift"><strong class=""> YOYOFOOD</strong></i>
+
+      </a>
+      <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+         aria-controls="sidenav-collapse-main">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse"  [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+        <!-- Collapse header -->
+        <div class="navbar-collapse-header d-md-none">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a routerLinkActive="active" [routerLink]="['/shop/dashboard']">
+                <img src="assets/img/brand/blue.png">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" (click)="isCollapsed=!isCollapsed" >
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Navbar items -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/user/register-store']">
+                  <i class="ni ni-circle-08"></i>
+                  <span class="nav-link-inner--text">Register Shop Owner</span>
+                </a>
+              </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/user/register']">
+              <i class="ni ni-circle-08"></i>
+              <span class="nav-link-inner--text">Register</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/user/login']">
+              <i class="ni ni-key-25"></i>
+              <span class="nav-link-inner--text">Login</span>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/user-profile']">
+              <i class="ni ni-single-02"></i>
+              <span class="nav-link-inner--text">Profile</span>
+            </a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
+<footer class="py-5">
+  <div class="container">
+    <div class="row align-items-center justify-content-xl-between">
+      <div class="col-xl-6">
+        <div class="copyright text-center text-xl-left text-muted">
+          &copy; {{ test | date: "yyyy" }} <a href="https://www.facebook.com/groups/1048762465260254/" class="font-weight-bold ml-1" target="_blank">YOYOFOOD</a>
+        </div>
+      </div>
+      <div class="col-xl-6">
+        <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+          <li class="nav-item">
+            <a href="https://www.facebook.com/groups/1048762465260254/" class="nav-link" target="_blank">YOYOFOOD</a>
+          </li>
+          <li class="nav-item">
+            <a href="https://www.facebook.com/groups/1048762465260254/" class="nav-link" target="_blank">About Us</a>
+          </li>
+          <li class="nav-item">
+            <!-- <a href="http://blog.creative-tim.com?ref=ada-footer-admin-layout" class="nav-link" target="_blank">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="https://github.com/creativetimofficial/argon-dashboard-angular/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

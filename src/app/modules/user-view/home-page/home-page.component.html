@@ -1,0 +1,163 @@
+<h5 class="mx-auto text-left mt-2 mb-2">
+    <i class="far fa-calendar-check mr-1" aria-hidden="true"></i>
+    <span class="border-bottom border-danger">MỚI ĐẶT GẦN ĐÂY</span>
+</h5>
+<hr class="mt-0">
+<div class="row">
+    <ng-container *ngFor="let data of datasProduct">
+        <div class="col-4 mb-3">
+            <!-- Card -->
+            <div class="card booking-card" style="height: 520px">
+
+                <!-- Card image -->
+                <div class="view overlay">
+                    <a  routerLink="/detail/{{data.nameUnAccent}}">
+                        <img class="card-img-top" src="{{data.image}}" alt="Card image cap">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <!-- Title -->
+                    <h4 class="card-title font-weight-bold">
+                        <a routerLink="/detail/{{data.nameUnAccent}}">{{data.store}}</a>
+                    </h4>
+                    <!-- Data -->
+                    <ul class="list-unstyled list-inline rating mb-0">
+                        <li class="list-inline-item mr-0"><i class="fas fa-star amber-text" aria-hidden="true"> </i>
+                        </li>
+                        <li class="list-inline-item mr-0"><i class="fas fa-star amber-text" aria-hidden="true"></i></li>
+                        <li class="list-inline-item mr-0"><i class="fas fa-star amber-text" aria-hidden="true"></i></li>
+                        <li class="list-inline-item mr-0"><i class="fas fa-star amber-text" aria-hidden="true"></i></li>
+                        <li class="list-inline-item"><i class="fas fa-star-half-alt amber-text" aria-hidden="true"></i>
+                        </li>
+                        <li class="list-inline-item">
+                            <p class="text-muted">4.5 (413)</p>
+                        </li>
+                    </ul>
+                    <p class="mb-2"># • {{data.typeProduct}}</p>
+                    <!-- Text -->
+                    <p class="card-text under-cut">{{data.description}}</p>
+                    <hr class="my-4">
+                    <!-- <p class="lead"><strong>Khung giờ mở cửa</strong></p>
+                    <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
+                        <li class="list-inline-item mr-0">
+                            <div class="chip deep-purple white-text mr-0 waves-effect waves-effect">
+                                {{data.promotionTimeDto.startTime}}</div>
+                        </li>
+                        <li class="list-inline-item mr-0">
+                            <div class="chip mr-0 waves-effect waves-effect">{{data.promotionTimeDto.endTime}}</div>
+                        </li>
+                        <li class="list-inline-item mr-0">
+                            <div class="chip mr-0 waves-effect waves-effect">{{data.promotionTimeDto.endTime}}</div>
+                        </li>
+                        <li class="list-inline-item mr-0">
+                            <div class="chip mr-0 waves-effect waves-effect">{{data.promotionTimeDto.endTime}}</div>
+                        </li>
+                    </ul> -->
+                </div>
+            </div>
+            <!-- Card -->
+        </div>
+    </ng-container>
+
+
+
+</div>
+<hr class="my-5">
+
+<!-- Section: Contact v.2 -->
+<section id="contact" class="section pb-5 wow fadeIn" data-wow-delay="0.3s">
+
+    <!-- Section heading -->
+    <h2 class="font-weight-bold text-center h1 my-5">Liên hệ</h2>
+    <!-- Section description -->
+    <p class="text-center grey-text mb-5 mx-auto w-responsive">YOYOFOOD là trang tổng hợp mã giảm giá lớn nhất thế
+        giới được thiết kế và hoạt động bởi YOYOFOOD cùng đồng bọn. Hãy để lại liên hệ để nhận được nhiều thông tin
+        giảm giá hơn</p>
+
+    <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-8 col-xl-9">
+            <form>
+
+                <!-- Grid row -->
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-6">
+                        <div class="md-form">
+                            <label for="contact-name" class="">Tên đầy đủ</label>
+                            <input type="text" id="contact-name" class="form-control">
+                        </div>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-6">
+                        <div class="md-form">
+                            <label for="contact-email" class="">Email của bạn</label>
+                            <input type="text" id="contact-email" class="form-control">
+                        </div>
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+
+                <!-- Grid row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form">
+                            <label for="contact-Subject" class="">Món ăn (đồ uống) yêu thích</label>
+                            <input type="text" id="contact-Subject" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <!-- Grid row -->
+
+                <!-- Grid row -->
+                <div class="row mb-4">
+
+                    <!-- Grid column -->
+                    <div class="col-md-12">
+
+                        <div class="md-form">
+                            <label for="contact-message">Để lại ý kiến phát triển website</label>
+                            <textarea type="text" id="contact-message" class="md-textarea form-control"
+                                rows="3"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Grid row -->
+
+            </form>
+
+            <div class="text-center mb-4">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Gửi</button>
+            </div>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-xl-3">
+            <ul class="contact-icons text-center list-unstyled">
+                <li><i class="fa fa-map-marker fa-2x"></i>
+                    <p>Số 8A Tôn Thất Thuyết, Mỹ Đình, Nam Từ Liêm, Hà Nội</p>
+                </li>
+
+                <li><i class="fa fa-phone fa-2x"></i>
+                    <p>+84 988 123 123</p>
+                </li>
+
+                <li><i class="fa fa-envelope fa-2x"></i>
+                    <p>admin@YOYOFOOD.vn</p>
+                </li>
+            </ul>
+        </div>
+        <!-- Grid column -->
+
+    </div>
+
+</section>
+<!-- Section: Contact v.2 -->
