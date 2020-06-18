@@ -30,7 +30,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
             {
                 path: '',
-                loadChildren: 'src/app/modules/shop-view/products/productrs.module#ProductModule',
+                loadChildren: 'src/app/modules/shop-view/product/products.module#ProductModule',
             }
         ]
     },

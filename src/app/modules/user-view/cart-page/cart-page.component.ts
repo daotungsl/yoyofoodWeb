@@ -1,24 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../detail-page/item.component';
 import { CustomerService } from 'src/app/auth/customer.service';
+import { Product } from '../detail-page/product.component';
+import { Iorder } from './order-tras.component';
+import { ProductsService } from '../../shop-view/product/products.service';
+import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-cart-page',
-  templateUrl: './cart-page.component.html',
-  styleUrls: ['./cart-page.component.scss']
+	selector: 'app-cart-page',
+	templateUrl: './cart-page.component.html',
+	styleUrls: ['./cart-page.component.scss']
 })
 export class CartPageComponent implements OnInit {
-	private items: Item[] = [];
-	private total: number = 0;
-  constructor(
-    private customer: CustomerService,
+	items: Item[] = [];
+	total: number = 0;
+	product: Product;
+	products: Product[] = [];
+	typePay: number = 0;
+	modalSuccess: any;
+	closeResult: string;
 
-  ) { }
+	constructor(
+		private customer: CustomerService,
+    private modalService: NgbModal,
+	private router: Router,
+		private serviceProduct: ProductsService
+	) { }
 
-  ngOnInit() {
-    this.loadCart();
-  }
-  loadCart(): void {
+	ngOnInit() {
+		this.loadCart();
+		this.products = this.customer.getProduct();
+	}
+	loadCart(): void {
 		this.total = 0;
 		this.items = [];
 		let cart = this.customer.getCart();
@@ -28,11 +42,12 @@ export class CartPageComponent implements OnInit {
 				product: item.product,
 				quantity: item.quantity
 			});
-			// this.total += item.product.price * item.quantity;
+			this.total += item.product.price * item.quantity;
 		}
-  }
-  remove(id: number): void {
-		let cart: any = JSON.parse(localStorage.getItem('cart'));
+
+	}
+	remove(id: number): void {
+		let cart: any = this.customer.getCart();
 		let index: number = -1;
 		for (var i = 0; i < cart.length; i++) {
 			let item: Item = JSON.parse(cart[i]);
@@ -40,8 +55,160 @@ export class CartPageComponent implements OnInit {
 				cart.splice(i, 1);
 				break;
 			}
-    }
-    this.customer.setCart(cart);
+		}
+		this.customer.setCart(cart);
 		this.loadCart();
 	}
+
+	add(id: number): void {
+		var item: Item = {
+			product: this.product,
+			quantity: 1
+		};
+
+		if (this.customer.getCart() == null) {
+			let cart: any = [];
+			cart.push(JSON.stringify(item));
+			this.customer.setCart(cart);
+		} else {
+			let cart: any = this.customer.getCart();
+			let index: number = -1;
+			for (var i = 0; i < cart.length; i++) {
+				let item: Item = JSON.parse(cart[i]);
+				if (item.product.productId == id) {
+					index = i;
+					break;
+				}
+			}
+			if (index == -1) {
+				cart.push(JSON.stringify(item));
+				this.customer.setCart(cart);
+			} else {
+				let item: Item = JSON.parse(cart[index]);
+				item.quantity += 1;
+				cart[index] = JSON.stringify(item);
+				this.customer.setCart(cart);
+			}
+		}
+		this.loadCart();
+
+	}
+	sub(id: number): void {
+		var item: Item = {
+			product: this.product,
+			quantity: 1
+		};
+
+		if (this.customer.getCart() == null) {
+			let cart: any = [];
+			cart.push(JSON.stringify(item));
+			this.customer.setCart(cart);
+		} else {
+			let cart: any = this.customer.getCart();
+			let index: number = -1;
+			for (var i = 0; i < cart.length; i++) {
+				let item: Item = JSON.parse(cart[i]);
+				if (item.product.productId == id) {
+					index = i;
+					break;
+				}
+			}
+			if (index == -1) {
+				cart.push(JSON.stringify(item));
+				this.customer.setCart(cart);
+			} else {
+				let item: Item = JSON.parse(cart[index]);
+				item.quantity -= 1;
+				cart[index] = JSON.stringify(item);
+				this.customer.setCart(cart);
+			}
+		}
+		this.loadCart();
+
+	}
+	checkOut(): void {
+		let cart: any = this.customer.getCart();
+		var order = {};
+		order['account_id'] = JSON.parse(cart[0]).product.accountId;
+		order['description'] = JSON.parse(cart[0]).product.description;
+		order['total'] = this.total;
+		order['typePay'] = this.typePay;
+		order['orderDetails'] = [];
+		order['orderDetails'].push({})
+		order['orderDetails'].unshift({});
+		for (var i = 0; i < cart.length; i++) {
+			let item: Item = JSON.parse(cart[i]);
+			order['orderDetails'][i]['product_id'] = item.product.productId;
+			order['orderDetails'][i]['quantity'] = item.quantity;
+			order['orderDetails'][i]['unitPrice'] = item.product.price;
+		}
+		
+		console.log(order);
+		this.serviceProduct.tryOder(order)
+		.subscribe({
+		  next: value => {
+			console.log(value)
+			this.customer.removeCart();
+			this.router.navigateByUrl('/');
+		  },
+		  error: err => {
+			console.log(err)
+  
+		  }
+		})
+	}
+
+	open(oder, login, success, type, modalDimension) {
+	
+		this.modalSuccess = success;
+		if (modalDimension === 'sm' && type === 'modal_add') {
+		  this.modalService.open(oder, { windowClass: 'modal-lage', size: 'sm', centered: true }).result.then((result) => {
+			this.closeResult = `Closed with: ${result}`;
+		  }, (reason) => {
+			this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+		  });
+		} else if (modalDimension === 'sm' && type === 'modal_edit') {
+		  this.modalService.open(oder, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
+			this.closeResult = `Closed with: ${result}`;
+		  }, (reason) => {
+			this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+		  });
+		} else if (modalDimension === '' && type === 'modal_oder') {
+	
+		  if (!this.customer.getAccount()) {
+			this.modalService.open(login, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
+			  this.closeResult = `Closed with: ${result}`;
+			}, (reason) => {
+			  this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+			});
+		  }
+		  this.checkOut()
+		  this.modalService.open(oder, { windowClass: 'modal-danger', size: 'sm', centered: true }).result.then((result) => {
+			this.closeResult = `Closed with: ${result}`;
+		  }, (reason) => {
+			this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+		  });
+	
+		} else {
+		  this.modalService.open(oder, { centered: true }).result.then((result) => {
+			this.closeResult = `Closed with: ${result}`;
+		  }, (reason) => {
+			this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+		  });
+		}
+	
+	
+	
+	
+	  }
+	  private getDismissReason(reason: any): string {
+		if (reason === ModalDismissReasons.ESC) {
+		  return 'by pressing ESC';
+		} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+		  return 'by clicking on a backdrop';
+		} else {
+		  return `with: ${reason}`;
+		}
+	  }
+
 }

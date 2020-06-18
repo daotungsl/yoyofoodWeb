@@ -92,13 +92,13 @@
                     <hr class="my-4" />
                     <div class="row">
                       <div class="col-lg-6">
-                        <div class="form-group" *ngIf="formProductAdd.get('percent') as percent">
-                          <label class="form-control-label" for="input-percent-sale">Percent Sale</label>
-                          <input type="number" id="input-percent-sale" [formControl]='percent'
-                            class="form-control form-control-alternative" placeholder="Percent..." value="">
-                          <ng-container *ngIf="percent.invalid && percent.dirty || myform.submitted">
+                        <div class="form-group" *ngIf="formProductAdd.get('price') as price">
+                          <label class="form-control-label" for="input-price-sale">Price</label>
+                          <input type="number" id="input-price-sale" [formControl]='price'
+                            class="form-control form-control-alternative" placeholder="Price..." value="">
+                          <ng-container *ngIf="price.invalid && price.dirty || myform.submitted">
                             <div class="text-danger">
-                              <span *ngIf="percent.hasError('required')">{{errors.percent.required}}</span>
+                              <span *ngIf="price.hasError('required')">{{errors.price.required}}</span>
                             </div>
                           </ng-container>
                         </div>
@@ -117,111 +117,7 @@
                       </div>
                     </div>
 
-                    <div class="row">
-                      <!-- Datepicker -->
-                      <div class="col-lg-6">
-                        <div class="input-daterange datepicker row align-items-center">
-
-                          <div class="col">
-                            <div class="form-group" *ngIf="formProductAdd.get('startDay') as startDay"
-                              [ngClass]="{'focused':focus3===true}">
-                              <label class="form-control-label">Start day</label>
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-                                </div>
-                                <input class="form-control datepicker" placeholder="Select date" name="dp1"
-                                  [formControl]='startDay' ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()"
-                                  (select)="mama($event)" type="text" [dayTemplate]="t"
-                                  (dateSelect)="startDateChanged($event)" autocomplete="off" (focus)="focus3=true"
-                                  (blur)="focus3=false" />
-                                <ng-template #t let-date let-focused="focused">
-                                  <span class="custom-day" [class.text-white]="isActive(date)"
-                                    [class.range-end]="isRangeEnd(date)" [class.range-start]="isRangeStart(date)"
-                                    [class.btn-light]="isActive(date)" [class.bg-primary]="isActive(date)"
-                                    [class.range]="isInRange(date)" [class.faded]="isInRange(date)">
-                                    {{ date.day }}
-                                  </span>
-                                </ng-template>
-                              </div>
-                              <ng-container *ngIf="startDay.invalid && startDay.dirty || myform.submitted">
-                                <div class="text-danger">
-                                  <span *ngIf="startDay.hasError('required')">{{errors.startDay.required}}</span>
-                                </div>
-                              </ng-container>
-                            </div>
-                          </div>
-
-                          <div class="col">
-                            <div class="form-group" *ngIf="formProductAdd.get('expiredDay') as expiredDay"
-                              [ngClass]="{'focused':focus4===true}">
-                              <label class="form-control-label">End day</label>
-
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-                                </div>
-                                <input class="form-control datepicker" placeholder="Select date" name="dp2"
-                                  [formControl]='expiredDay' ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()"
-                                  (focus)="focus4=true" (blur)="focus4=false" type="text" [dayTemplate]="t1"
-                                  (dateSelect)="endDateChanged($event)" autocomplete="off" />
-                                <ng-template #t1 let-date let-focused="focused">
-                                  <span class="custom-day" [class.text-white]="isActive(date)"
-                                    [class.range-end]="isRangeEnd(date)" [class.range-start]="isRangeStart(date)"
-                                    [class.btn-light]="isActive(date)" [class.bg-primary]="isActive(date)"
-                                    [class.range]="isInRange(date)" [class.faded]="isInRange(date)">
-                                    {{ date.day }}
-                                  </span>
-                                </ng-template>
-                              </div>
-                              <ng-container *ngIf="expiredDay.invalid && expiredDay.dirty || myform.submitted">
-                                <div class="text-danger">
-                                  <span *ngIf="expiredDay.hasError('required')">{{errors.expiredDay.required}}</span>
-                                </div>
-                              </ng-container>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div class="input-daterange datepicker row align-items-center">
-
-                          <div class="col">
-                            <div class="form-group" *ngIf="formProductAdd.get('startTime') as startTime">
-                              <label class="form-control-label" for="input-max-slot">Start time</label>
-                              <select class="form-control form-control-alternative" [formControl]='startTime'
-                                id="input-max-slot">
-                                <option selected disabled="disabled" [value]="null">Choose...</option>
-                                <option *ngFor="let time of timeSlot" [value]="time">
-                                  {{time |addTimePipe}} </option>
-                              </select>
-                              <ng-container *ngIf="startTime.invalid && startTime.dirty || myform.submitted">
-                                <div class="text-danger">
-                                  <span *ngIf="startTime.hasError('required')">{{errors.startTime.required}}</span>
-                                </div>
-                              </ng-container>
-                            </div>
-                          </div>
-
-                          <div class="col">
-                            <div class="form-group" *ngIf="formProductAdd.get('endTime') as endTime">
-                              <label class="form-control-label" for="input-max-slot">End time</label>
-                              <select class="form-control form-control-alternative" [formControl]='endTime'
-                                id="input-max-slot">
-                                <option selected disabled="disabled" [value]="null">Choose...</option>
-                                <option *ngFor="let time of timeSlot" [value]="time">
-                                  {{time| addTimePipe}}</option>
-                              </select>
-                              <ng-container *ngIf="endTime.invalid && endTime.dirty || myform.submitted">
-                                <div class="text-danger">
-                                  <span *ngIf="endTime.hasError('required')">{{errors.endTime.required}}</span>
-                                </div>
-                              </ng-container>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                
                     <div class="row">
                       <div class="col-lg-6">
                       </div>

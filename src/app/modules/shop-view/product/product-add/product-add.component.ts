@@ -105,23 +105,16 @@ export class ProductAddComponent implements OnInit {
   
   doSubmit() {
     if (this.formProductAdd.invalid) {
-      console.log('invalid')
-      console.log(this.formProductAdd)
       return;
     }
-    let transStartDay = this.formProductAdd.get('startDay').value;
-    let transexpiredDay = this.formProductAdd.get('expiredDay').value;
-
-
-    this.formProductAdd.get('startDay').setValue(this.convertDay(transStartDay));
-    this.formProductAdd.get('expiredDay').setValue(this.convertDay(transexpiredDay));
+  
     console.log(this.formProductAdd.value);
 
     this.serviceProduct.tryAddProduct(this.formProductAdd.value)
       .subscribe({
         next: value => {
           console.log(value)
-          this.router.navigateByUrl('/shop/Product/list');
+          this.router.navigateByUrl('/shop/product/list');
         },
         error: err => {
           console.log(err)

@@ -7,7 +7,7 @@
           <h2 class="mb-0 d-inline-block">Product List</h2>
           <div class="col-lg-3 col-md-6 d-inline-block float-right">
             <button class="btn btn-icon btn-3 btn-primary" type="button" routerLinkActive="active"
-              [routerLink]="['/shop/Product/create']">
+              [routerLink]="['/shop/product/create']">
               <!-- <button class="btn btn-icon btn-3 btn-primary" type="button"  (click)="onShowForm();"> -->
               <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
               <span class="btn-inner--text">Add New Product</span>
@@ -19,16 +19,16 @@
             <app-card-product>
 
 
-              <a *ngIf="data.status == 1" class="card-image" (click)="open(classic3, 'modal_delete', '', data)"><img width="300" height="270"
+              <!-- <a *ngIf="data.status == 1" class="card-image" (click)="open(classic3, 'modal_delete', '', data)"><img width="300" height="270"
                   src="{{ data.image }}"> </a>
               <a *ngIf="data.status == 1" class="card-title" (click)="open(classic3, 'modal_delete', '', data)">
                 <h3 class="under-cut">{{data.name}}</h3>
-              </a>
+              </a> -->
 
 
-              <a *ngIf="data.status == 0" class="card-image" routerLink="/shop/Product/update/{{data.nameUnAccent}}"><img width="300"
+              <a  class="card-image" routerLink="/shop/product/update/{{data.nameUnAccent}}"><img width="300"
                   height="270" src="{{ data.image }}"> </a>
-              <a *ngIf="data.status == 0" class="card-title" routerLink="/shop/Product/update/{{data.nameUnAccent}}">
+              <a  class="card-title" routerLink="/shop/product/update/{{data.nameUnAccent}}">
                 <h3 class="under-cut">{{data.name}}</h3>
               </a>
 
@@ -42,11 +42,11 @@
               </div>
               <span class="card-author"><i class="far fa-user"></i> {{data.store}}</span>
 
-              <span *ngIf="data.updated == null" class="card-time-stamp"><i class="far fa-clock"></i>
+              <!-- <span *ngIf="data.updated == null" class="card-time-stamp"><i class="far fa-clock"></i>
                 {{data.created | slice: 10 | changewhitespaces}} - ...</span>
               <span *ngIf="data.updated != null" class="card-time-stamp"><i class="far fa-clock"></i>
                 {{data.created | slice: 10 | changewhitespaces}} -
-                {{data.updated | slice: 10 | changewhitespaces}}</span>
+                {{data.updated | slice: 10 | changewhitespaces}}</span> -->
 
               <span *ngIf="data.status == 0" class="card-status badge badge-dot mr-4"><i class="bg-danger"></i>
                 Disbaled</span>
@@ -55,6 +55,7 @@
               <span *ngIf="data.status == 2" class="card-status badge badge-dot mr-4"><i class="bg-warning"></i>
                 Exprires</span>
             </app-card-product>
+            
             <ng-template #classic3 let-c="close()" let-d="dismiss()">
               <div class="modal-content bg-gradient-danger">
                 <div class="modal-body">

@@ -66,6 +66,9 @@ export class NavbarComponent implements OnInit {
     if (titlee.indexOf("voucher") == 6) {
       return "Voucher"
     }
+    if (titlee.indexOf("product") == 6) {
+      return "Product"
+    }
     for (var item = 0; item < this.listTitles.length; item++) {
       if (this.listTitles[item].path === titlee) {
         return this.listTitles[item].title;

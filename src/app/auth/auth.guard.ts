@@ -30,7 +30,6 @@ export class NeedAuthGuard implements CanActivate, CanActivateChild {
   }
   canActivateShop(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const redirectUrl = route['_routerState']['url'];
-
     if(this.customerService.isShop() != -1){
       return true;
     }

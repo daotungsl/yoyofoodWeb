@@ -34,14 +34,13 @@
                                 {{dataProduct?.data.name}}</h4>
                         </div>
                         <div class="">
-                            Ngày hết hạn:
-                            {{dataProduct?.data.expiredDay |slice:9}}
+                            Giá: {{dataProduct?.data.price}}đ
 
                         </div>
                         <div>
                             Số lượn còn:
                             {{dataProduct?.data.slotLeft}}
-                            Voucher
+                            Sản phẩm
                         </div>
                         <hr>
                         <p>{{dataProduct?.data.description}}</p>
@@ -75,7 +74,7 @@
                                                 id="input-type-store" [formControl]='adults'>
 
                                                 <option *ngFor="let data of [0,1,2,3,4,5,6,7,8,9,10]" [ngValue]=data>
-                                                    {{data}} 
+                                                    {{data}}
                                                 </option>
                                             </select>
                                             <div>
@@ -90,7 +89,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                   
+
                                 </div>
                                 <!-- <div class="row">
                                     <div class="col-12">
@@ -127,10 +126,32 @@
 
 
                                 <!-- Send button -->
+                                <!-- <button class="btn btn-outline-danger btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                    (click)="doSubmit()">Thêm vào giỏ hàng
+                                </button> -->
+
                                 <button class="btn btn-outline-danger btn-rounded btn-block z-depth-0 my-4 waves-effect"
-                                    (click)="doSubmit()">Thêm vào giỏ hàng</button>
-                                    
-                                
+                                    (click)="open(oder,login,success, 'modal_oder', '')">Thêm vào giỏ hàng</button>
+                                <ng-template #oder let-c="close()" let-c="dismiss()">
+                                    <div class="modal-content bg-gradient-info">
+                                        <div class="modal-body">
+                                            <div class="py-3 text-center">
+                                                <i class="ni ni-bell-55 ni-3x"></i>
+                                                <h4 class=" heading mt-4">Thêm vào giỏ hàng thành công
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+
+                                            <!-- <button [disabled]="!isValid" type="button" class="btn btn-white"
+                                                (click)="c">Xác nhận</button> -->
+                                                <button type="button" class="btn btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                                data-dismiss="modal" (click)="c">Xác nhận</button>
+                                        </div>
+                                    </div>
+
+                                </ng-template>
+
                                 <!-- modal login -->
                                 <ng-template #login let-c="close()" let-d="dismiss()">
                                     <div class="modal-content">
@@ -164,8 +185,8 @@
                                                                     [formControl]="password" type="password">
                                                                 <ng-container
                                                                     *ngIf="password.invalid && password.dirty">
-                                                                    <span *ngIf="password.hasError('required')">Loi
-                                                                        cmnr</span>
+                                                                    <span *ngIf="password.hasError('required')">
+                                                                        Password not empty</span>
                                                                 </ng-container>
 
 
@@ -207,12 +228,12 @@
                     </div>
                 </div>
                 <div class="card text-center mt-3">
-                    <div class="img-thumbnail p-2">
+                    <!-- <div class="img-thumbnail p-2">
                         <img [src]="dataProduct?.data.icon" height="80px" width="auto" alt="">
                     </div>
                     <span class="p-2">
                         {{dataProduct?.data.description}}
-                    </span>
+                    </span> -->
                     <hr>
                     <a href="#" class="mb-3 text-danger">King BBQ trên YOYOFOOD &gt;&gt;</a>
                 </div>

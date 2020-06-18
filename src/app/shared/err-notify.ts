@@ -178,8 +178,8 @@ export const ERROR_SHOP_PRODUCT ={
         required : 'Image must not empty',
         syntax: ''
     },
-    percent: {
-        required : 'Percent must not empty',
+    price: {
+        required : 'Price must not empty',
         syntax: ''
     },
     maxSlot: {

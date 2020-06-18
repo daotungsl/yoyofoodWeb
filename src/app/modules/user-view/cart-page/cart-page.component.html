@@ -3,6 +3,7 @@
   <app-header-web></app-header-web>
 
 </div>
+
 <!-- <h3>Cart Info</h3>
 <table border="1">
     <tr>
@@ -65,78 +66,33 @@
                           </tr>
                       </thead>
                       <tbody>
+                        <ng-container *ngFor="let data of items">
                           <tr>
                               <td class="shoping__cart__item">
                                   <img src="assets/img/cart/cart-1.jpg" alt="">
-                                  <h5>Vegetable’s Package</h5>
+                                  <h5>{{data.product.name}}</h5>
                               </td>
                               <td class="shoping__cart__price">
-                                  $55.00
+                                {{data.product.price}}đ
                               </td>
                               <td class="shoping__cart__quantity">
                                   <div class="quantity">
                                       <div class="pro-qty">
-                                        <span class="dec qtybtn">-</span>
-                                        <input type="text" value="1">
-                                        <span class="inc qtybtn">+</span>
+                                        <a (click)="sub(data.product.productId)"><span class="dec qtybtn">-</span></a>
+                                        <input type="text" value="{{data.quantity}}">
+                                        <a (click)="add(data.product.productId)"><span class="inc qtybtn">+</span></a>
                                       </div>
                                   </div>
                               </td>
                               <td class="shoping__cart__total">
-                                  $110.00
+                                {{data.product.price * data.quantity}}đ
                               </td>
                               <td class="shoping__cart__item__close">
-                                  <span class="icon_close"></span>
+                                <a (click)="remove(data.product.productId)"><span class="icon_close"></span></a> 
                               </td>
                           </tr>
-                          <!-- <tr>
-                              <td class="shoping__cart__item">
-                                  <img src="assets/img/cart/cart-2.jpg" alt="">
-                                  <h5>Fresh Garden Vegetable</h5>
-                              </td>
-                              <td class="shoping__cart__price">
-                                  $39.00
-                              </td>
-                              <td class="shoping__cart__quantity">
-                                  <div class="quantity">
-                                      <div class="pro-qty">
-                                        <span class="dec qtybtn">-</span>
-                                        <input type="text" value="1">
-                                        <span class="inc qtybtn">+</span>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td class="shoping__cart__total">
-                                  $39.99
-                              </td>
-                              <td class="shoping__cart__item__close">
-                                  <span class="icon_close"></span>
-                              </td>
-                          </tr> -->
-                          <!-- <tr>
-                              <td class="shoping__cart__item">
-                                  <img src="assets/img/cart/cart-3.jpg" alt="">
-                                  <h5>Organic Bananas</h5>
-                              </td>
-                              <td class="shoping__cart__price">
-                                  $69.00
-                              </td>
-                              <td class="shoping__cart__quantity">
-                                  <div class="quantity">
-                                      <div class="pro-qty">
-                                        <span class="dec qtybtn">-</span>
-                                        <input type="text" value="1">
-                                        <span class="inc qtybtn">+</span>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td class="shoping__cart__total">
-                                  $69.99
-                              </td>
-                              <td class="shoping__cart__item__close">
-                                  <span class="icon_close"></span>
-                              </td>
-                          </tr> -->
+                        </ng-container>
+                        
                       </tbody>
                   </table>
               </div>
@@ -145,9 +101,9 @@
       <div class="row">
           <div class="col-lg-12">
               <div class="shoping__cart__btns">
-                  <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                  <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                      Upadate Cart</a>
+                  <a routerLink="/" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                  <!-- <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+                      Upadate Cart</a> -->
               </div>
           </div>
           <div class="col-lg-6">
@@ -165,16 +121,38 @@
               <div class="shoping__checkout">
                   <h5>Cart Total</h5>
                   <ul>
-                      <li>Subtotal <span>$454.98</span></li>
-                      <li>Total <span>$454.98</span></li>
+                      <li>Subtotal <span>{{total}}đ</span></li>
+                      <li>Total <span>{{total}}đ</span></li>
                   </ul>
-                  <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                  <!-- <a (click)="checkOut()" class="primary-btn">PROCEED TO CHECKOUT</a> -->
+                  <button class="btn btn-outline-success btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                    (click)="open(oder,login,success, 'modal_oder', '')">PROCEED TO CHECKOUT</button>
+                                <ng-template #oder let-c="close()" let-c="dismiss()">
+                                    <div class="modal-content bg-gradient-info">
+                                        <div class="modal-body">
+                                            <div class="py-3 text-center">
+                                                <i class="ni ni-bell-55 ni-3x"></i>
+                                                <h4 class=" heading mt-4">Đặt hàng thành công
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+
+                                            <!-- <button [disabled]="!isValid" type="button" class="btn btn-white"
+                                                (click)="c">Xác nhận</button> -->
+                                                <button type="button" class="btn btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                                data-dismiss="modal" (click)="c">Xác nhận</button>
+                                        </div>
+                                    </div>
+
+                                </ng-template>
               </div>
           </div>
       </div>
   </div>
 </section>
 <!-- Footer  -->
+
 <div class="footer">
   <app-footer-web></app-footer-web>
 </div>

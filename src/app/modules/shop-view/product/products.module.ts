@@ -27,7 +27,6 @@ import { ProductAddComponent } from './product-add/product-add.component';
     ProductListComponent,
     CardProductComponent,
     ProductUpdateComponent,
-
   ]
 })
 

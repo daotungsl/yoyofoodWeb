@@ -14,6 +14,7 @@ export interface IProductSO {
           codeSale: String,
           percent: number,
           maxSlot: number,
+          price:number,
           slotLeft: number,
           startDay: String,
           expiredDay: String,

@@ -16,30 +16,21 @@ export class ProductsService {
     name: [null, [Validators.required, Validators.maxLength(200)]],
     description: [null, [Validators.required, Validators.maxLength(2000)]],
     image: [null, [Validators.required]],
-    percent: [null, [Validators.required]],
+    price: [null, [Validators.required]],
     maxSlot: [null, [Validators.required]],
-    startDay: [null, [Validators.required]],
-    expiredDay: [null, [Validators.required]],
-    startTime: [null, [Validators.required]],
-    endTime: [null, [Validators.required]],
-    dayWeek: ['2,3,4,5,6', [Validators.required]],
     storeId: [null, [Validators.required]],
     typeProductId: [null, [Validators.required]],
   }
   ProductUpdateFormControl = {
-    name: [null, [Validators.required, Validators.maxLength(200)]],
+name: [null, [Validators.required, Validators.maxLength(200)]],
     description: [null, [Validators.required, Validators.maxLength(2000)]],
     image: [null, [Validators.required]],
     id: [null, [Validators.required]],
-    percent: [null, [Validators.required]],
+    price: [null, [Validators.required]],
     maxSlot: [null, [Validators.required]],
-    startDay: [null, [Validators.required]],
-    expiredDay: [null, [Validators.required]],
-    startTime: [null, [Validators.required]],
-    endTime: [null, [Validators.required]],
-    dayWeek: ['2,3,4,5,6', [Validators.required]],
     storeId: [null, [Validators.required]],
     typeProductId: [null, [Validators.required]],
+    status: [null, [Validators.required]],
   }
   OderFornControl = {
     accountId: [null, [Validators.required]],
@@ -47,6 +38,8 @@ export class ProductsService {
     // storeAddressId: [null, [Validators.required]],
     productId: [null, [Validators.required]],
     adults: [0, [Validators.required]],
+    price: [0, [Validators.required]],
+    name: [null, [Validators.required]],
     // children: [0, [Validators.required]],
     // time: [null, [Validators.required]],
     // day: [null, [Validators.required]],
@@ -103,10 +96,15 @@ export class ProductsService {
 tryOder(value): Observable<any>{
   console.log(HTTP_HEADER);
   return this.http.post<any>(
-    `${API_DOMAIN}api/guest/transactions/transaction`,
+    `${API_DOMAIN}api/guest/Orders/order`,
   value,
   {
-    headers: HTTP_HEADER
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: localStorage.getItem('ACCOUNT_TOKEN'),
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+    }
   }
 ).pipe(
   map(res => {

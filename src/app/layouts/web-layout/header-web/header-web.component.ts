@@ -47,6 +47,9 @@ export class HeaderWebComponent implements OnInit {
     this.customer.removeTypeStore();
     this.customer.removeTypeVoucher();
     this.customer.removeVoucherList();
+    this.customer.removeProduct();
+    this.customer.removeProductList();
+    this.customer.removeCart();
     this.router.navigateByUrl('/')
   }
 

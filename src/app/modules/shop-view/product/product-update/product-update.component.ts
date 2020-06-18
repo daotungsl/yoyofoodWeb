@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ITypeProductSO } from 'src/app/interfaces/shop-owner/Product-type-so.interface';
 import { ERROR_SHOP_PRODUCT } from 'src/app/shared/err-notify';
@@ -49,12 +49,12 @@ export class ProductUpdateComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private serviceProduct: ProductsService, calendar: NgbCalendar,
+    private router: Router,
     private fb: FormBuilder,
     private admin: AdminLayoutComponent,
     private customer: CustomerService,
   ) {
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+
   }
 
   ngOnInit() {
@@ -68,10 +68,10 @@ export class ProductUpdateComponent implements OnInit {
       this.serviceProduct.ProductUpdateFormControl
     );
 
-this.datasTypeProduct = this.customer.getTypeProduct();
-    
-    this.listProduct = this.customer.getProductList();
+    this.datasTypeProduct = this.customer.getTypeProduct();
 
+    this.listProduct = this.customer.getProductList();
+    console.log(this.listProduct)
     this.listProduct.forEach(element => {
       if (element.nameUnAccent == this.nameProduct) {
         this.getProduct(element);
@@ -116,40 +116,19 @@ this.datasTypeProduct = this.customer.getTypeProduct();
     }
   }
 
-  convertDayToTimls(value) {
-    let convertTime = `${value.month} ${value.day} ${value.year}`
-    return new Date(convertTime).getTime();
-  }
-  convertTimlsToDay(value) {
-    let convertTime = (value.split(" ")[1]).split("/");
-    return {
-      year: +convertTime[2],
-      month: +convertTime[1],
-      day: +convertTime[0]
-    }
-
-  }
   doSubmit() {
-    
-
     if (this.formProductUpdate.invalid) {
-      console.log('invalid')
       console.log(this.formProductUpdate)
       return;
     }
-    let transStartDay = this.formProductUpdate.get('startDay').value;
-    let transexpiredDay = this.formProductUpdate.get('expiredDay').value;
-
-
-    this.formProductUpdate.get('startDay').setValue(this.convertDayToTimls(transStartDay));
-    this.formProductUpdate.get('expiredDay').setValue(this.convertDayToTimls(transexpiredDay));
+    this.formProductUpdate.get('status').setValue(+this.formProductUpdate.value.status);
     console.log(this.formProductUpdate.value)
 
     this.serviceProduct.tryUpdateProduct(this.formProductUpdate.value)
       .subscribe({
         next: value => {
           console.log(value)
-
+          this.router.navigateByUrl('/shop/product/list');
         },
         error: err => {
           console.log(err)
@@ -157,8 +136,8 @@ this.datasTypeProduct = this.customer.getTypeProduct();
         }
       })
   }
-  getImageFromInput(event){
-    if(event.target.value == null){
+  getImageFromInput(event) {
+    if (event.target.value == null) {
       this.filename = './assets/img/brand/img-default.png'
     }
     this.filename = event.target.value
@@ -170,6 +149,7 @@ this.datasTypeProduct = this.customer.getTypeProduct();
     this.dataEditProduct = value;
 
     console.log(this.datasTypeProduct);
+    console.log(value);
 
     this.datasTypeProduct.forEach(element => {
       if (value.typeProduct == element.name) {
@@ -182,13 +162,9 @@ this.datasTypeProduct = this.customer.getTypeProduct();
     this.formProductUpdate.get('id').setValue(value.id);
     this.formProductUpdate.get('description').setValue(value.description);
     this.formProductUpdate.get('image').setValue(value.image);
-    this.formProductUpdate.get('percent').setValue(value.percent);
+    this.formProductUpdate.get('price').setValue(value.price);
     this.formProductUpdate.get('maxSlot').setValue(value.maxSlot);
-    this.formProductUpdate.get('expiredDay').setValue(this.convertTimlsToDay(value.expiredDay));
-    this.formProductUpdate.get('startDay').setValue(this.convertTimlsToDay(value.startDay));
-    this.formProductUpdate.get('startTime').setValue(value.promotionTimeDto.startTime);
-    this.formProductUpdate.get('endTime').setValue(value.promotionTimeDto.endTime);
-    this.formProductUpdate.get('maxSlot').setValue(value.promotionTimeDto.dayWeek);
+    this.formProductUpdate.get('status').setValue(+value.status);
 
 
   }

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ProductUpdateComponent } from './product-update/product-update.component';
 import { ProductAddComponent } from './product-add/product-add.component';
+import { ProductUpdateComponent } from './product-update/product-update.component';
 import { ProductListComponent } from './product-list/product-list.component';
 
 
