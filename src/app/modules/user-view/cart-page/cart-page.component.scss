@@ -45,44 +45,11 @@ color: green;
     width: 50%;
 }
 
-/******************************************************************
-  Template Name: Ogani
-  Description:  Ogani eCommerce  HTML Template
-  Author: Colorlib
-  Author URI: https://colorlib.com
-  Version: 1.0
-  Created: Colorlib
-******************************************************************/
-
-/*------------------------------------------------------------------
-[Table of contents]
-
-1.  Template default CSS
-	1.1	Variables
-	1.2	Mixins
-	1.3	Flexbox
-	1.4	Reset
-2.  Helper Css
-3.  Header Section
-4.  Hero Section
-5.  Service Section
-6.  Categories Section
-7.  Featured Section
-8.  Latest Product Section
-9.  Contact
-10.  Footer Style
--------------------------------------------------------------------*/
-
-/*----------------------------------------*/
-/* Template default CSS
-/*----------------------------------------*/
-
 html,
 body {
 	height: 100%;
 	font-family: "Cairo", sans-serif;
 	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
 }
 
 h1,
@@ -153,11 +120,6 @@ ol {
 	padding: 0;
 	margin: 0;
 }
-
-/*---------------------
-  Helper CSS
------------------------*/
-
 .section-title {
 	margin-bottom: 50px;
 	text-align: center;
@@ -205,8 +167,6 @@ ol {
 	color: #fff;
 }
 
-/* buttons */
-
 .primary-btn {
 	display: inline-block;
 	font-size: 14px;
@@ -228,9 +188,6 @@ ol {
 	background: #7fad39;
 	border: none;
 }
-
-/* Preloder */
-
 #preloder {
 	position: fixed;
 	width: 100%;
@@ -292,11 +249,6 @@ ol {
 		border-left-color: transparent;
 	}
 }
-
-/*---------------------
-  Header
------------------------*/
-
 .header__top {
 	background: #f5f5f5;
 }
@@ -602,11 +554,6 @@ ol {
 .humberger__open {
 	display: none;
 }
-
-/*---------------------
-  Hero
------------------------*/
-
 .hero {
 	padding-bottom: 50px;
 }
@@ -799,11 +746,6 @@ ol {
 .hero__text p {
 	margin-bottom: 35px;
 }
-
-/*---------------------
-  Categories
------------------------*/
-
 .categories__item {
 	height: 270px;
 	position: relative;
@@ -852,11 +794,6 @@ ol {
 	left: auto;
 	right: -35px;
 }
-
-/*---------------------
-  Featured
------------------------*/
-
 .featured {
 	padding-top: 80px;
 	padding-bottom: 40px;
@@ -989,11 +926,6 @@ ol {
 	color: #252525;
 	font-weight: 700;
 }
-
-/*---------------------
-  Latest Product
------------------------*/
-
 .latest-product {
 	padding-top: 80px;
 	padding-bottom: 0;
@@ -1063,11 +995,6 @@ ol {
 	color: #252525;
 	font-weight: 700;
 }
-
-/*---------------------
-  Form BLog
------------------------*/
-
 .from-blog {
 	padding-top: 50px;
 	padding-bottom: 50px;
@@ -1080,10 +1007,6 @@ ol {
 .from-blog__title {
 	margin-bottom: 70px;
 }
-
-/*---------------------
-  Breadcrumb
------------------------*/
 
 .breadcrumb-section {
 	display: flex;
@@ -1121,10 +1044,6 @@ ol {
 	font-size: 16px;
 	color: #ffffff;
 }
-
-/*---------------------
-  Sidebar
------------------------*/
 
 .sidebar__item {
 	margin-bottom: 35px;
@@ -1295,11 +1214,6 @@ ol {
 	position: absolute;
 	visibility: hidden;
 }
-
-/*---------------------
-  Shop Grid
------------------------*/
-
 .product {
 	padding-top: 80px;
 	padding-bottom: 80px;
@@ -1702,10 +1616,6 @@ ol {
 	margin-right: 0;
 }
 
-/*---------------------
-  Shop Details
------------------------*/
-
 .product-details {
 	padding-top: 80px;
 }
@@ -1907,9 +1817,6 @@ ol {
 	color: #666666;
 }
 
-/*---------------------
-  Shop Details
------------------------*/
 
 .related-product {
 	padding-bottom: 30px;
@@ -1919,9 +1826,6 @@ ol {
 	margin-bottom: 70px;
 }
 
-/*---------------------
-  Shop Cart
------------------------*/
 
 .shoping-cart {
 	padding-top: 80px;
@@ -2111,9 +2015,6 @@ ol {
 	text-align: center;
 }
 
-/*---------------------
-  Checkout
------------------------*/
 
 .checkout {
 	padding-top: 80px;
@@ -2316,9 +2217,6 @@ ol {
 	margin-top: 10px;
 }
 
-/*---------------------
-  Blog
------------------------*/
 
 .blog__item {
 	margin-bottom: 60px;
@@ -2395,9 +2293,6 @@ ol {
 	content: "";
 }
 
-/*---------------------
-  Blog Sidebar
------------------------*/
 
 .blog__sidebar {
 	padding-top: 50px;
@@ -2511,9 +2406,7 @@ ol {
 	margin-bottom: 10px;
 }
 
-/*---------------------
-  Blog Details Hero
------------------------*/
+
 
 .blog-details-hero {
 	height: 350px;
@@ -2555,10 +2448,6 @@ ol {
 .blog__details__hero__text ul li:last-child:after {
 	display: none;
 }
-
-/*---------------------
-  Blog Details
------------------------*/
 
 .related-blog {
 	padding-top: 70px;
@@ -2656,9 +2545,6 @@ ol {
 	margin-right: 0;
 }
 
-/*---------------------
-  Footer
------------------------*/
 
 .footer {
 	background: #F3F6FA;
@@ -2790,10 +2676,6 @@ ol {
 	float: right;
 }
 
-/*---------------------
-  Contact
------------------------*/
-
 .contact {
 	padding-top: 80px;
 	padding-bottom: 50px;
@@ -2819,10 +2701,6 @@ ol {
 	color: #666666;
 	margin-bottom: 0;
 }
-
-/*---------------------
-  Map
------------------------*/
 
 .map {
 	height: 500px;
@@ -2891,10 +2769,6 @@ ol {
 	line-height: 26px;
 }
 
-/*---------------------
-  Contact Form
------------------------*/
-
 .contact__form__title {
 	margin-bottom: 50px;
 	text-align: center;
@@ -2946,8 +2820,6 @@ ol {
 	font-size: 18px;
 	letter-spacing: 2px;
 }
-
-/*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1200px) {
 	.container {

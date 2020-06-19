@@ -19,7 +19,6 @@ import { ShopAuthGuard } from 'src/app/auth/auth-shop.guard';
 
 @NgModule({
   imports: [
-    SharedModule,
     // CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     // FormsModule,
@@ -30,7 +29,9 @@ import { ShopAuthGuard } from 'src/app/auth/auth-shop.guard';
     VoucherModule,
     ProductModule,
     ShopsModule,
-    ClipboardModule
+    ClipboardModule,
+    SharedModule
+
   ],
   declarations: [
     DashboardComponent,

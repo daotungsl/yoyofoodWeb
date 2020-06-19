@@ -26,7 +26,6 @@ import { WebLayoutModule } from './layouts/web-layout/web-layout.module';
     RouterModule,
     AppRoutingModule,
     WebLayoutModule,
-
     SharedModule
   ],
   declarations: [

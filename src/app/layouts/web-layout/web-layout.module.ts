@@ -16,10 +16,10 @@ import { CartPageComponent } from 'src/app/modules/user-view/cart-page/cart-page
 
   imports: [
     UserViewModule,
-    SharedModule,
     RouterModule.forChild(WebLayoutRoutes),
     NgbModule,
     ClipboardModule,
+    SharedModule,
 
 
   ],

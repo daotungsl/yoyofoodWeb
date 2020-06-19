@@ -16,10 +16,11 @@ import { ProductAddComponent } from './product-add/product-add.component';
 
 @NgModule({
   imports: [
-    SharedModule,
     RouterModule.forChild(ProductRoutes),
     NgbModule,
     ClipboardModule,
+    SharedModule,
+
   ],
   declarations: [
     ProductComponent,

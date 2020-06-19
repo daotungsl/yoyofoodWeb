@@ -14,10 +14,11 @@ import { AddDot } from 'src/app/shared/add-dot.pipe';
 
 @NgModule({
   imports: [
-    SharedModule,
     NgbModule,
     RouterModule,
     ClipboardModule,
+    SharedModule,
+
   ],
   declarations: [
     HomePageComponent,

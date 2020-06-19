@@ -8,10 +8,10 @@ import { CategoryPageRoutes } from './category-page.routing';
 @NgModule({
 
     imports: [
-        SharedModule,
         RouterModule.forChild(CategoryPageRoutes),
         NgbModule,
         ClipboardModule,
+        SharedModule,
 
 
 

@@ -17,10 +17,11 @@ import { VoucherUpdateComponent } from './voucher-update/voucher-update.componen
 
 @NgModule({
   imports: [
-    SharedModule,
     RouterModule.forChild(VoucherRoutes),
     NgbModule,
     ClipboardModule,
+    SharedModule,
+
   ],
   declarations: [
     VoucherComponent,

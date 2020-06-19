@@ -12,10 +12,11 @@ import { RegisterStoreComponent } from 'src/app/pages/register-store/register-st
 @NgModule({
   imports: [
     // CommonModule,
-    SharedModule,
     RouterModule.forChild(AuthLayoutRoutes),
     // FormsModule
     // NgbModule
+    SharedModule
+
   ],
   declarations: [
     LoginComponent,
