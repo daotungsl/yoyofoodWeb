@@ -10,6 +10,7 @@ import { CategoryPageTopComponent } from './categories-page/category-page-top/ca
 import { CategoryPageComponent } from './categories-page/category-page/category-page.component';
 import { CardItemComponent } from './card-item/card-item.component';
 import { HomeTopHotDealComponent } from './home-page/home-top-hot-deal.component';
+import { AddDot } from 'src/app/shared/add-dot.pipe';
 
 @NgModule({
   imports: [
@@ -25,13 +26,17 @@ import { HomeTopHotDealComponent } from './home-page/home-top-hot-deal.component
     CategoryMainContentComponent,
     CardItemComponent,
     HomeTopHotDealComponent,
+    AddDot,
+
     
   ],
   exports: [
     HomePageComponent,
     CategoryPageComponent,
     CategoryPageTopComponent,
-    CategoryMainContentComponent
+    CategoryMainContentComponent,
+    AddDot
+
   ]
 
 })

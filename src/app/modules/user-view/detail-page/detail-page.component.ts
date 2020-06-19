@@ -207,7 +207,6 @@ export class DetailPageComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    console.log(this.form.value.password);
     const md5 = new Md5();
 
     const passHash = md5.appendStr(this.form.value.password).end();
@@ -235,10 +234,6 @@ export class DetailPageComponent implements OnInit {
             alert("Bạn không thể dùng account shop để đặt chỗ")
 
           }
-
-
-
-
         },
         error: err => {
           console.log(err)
@@ -277,11 +272,8 @@ export class DetailPageComponent implements OnInit {
     }
   }
 
-  open(oder, login, success, type, modalDimension) {
-    console.log('in modal')
-    // this.isValid =  true;
+  open(oder, login, type, modalDimension) {
 
-    this.modalSuccess = success;
     if (modalDimension === 'sm' && type === 'modal_add') {
       this.modalService.open(oder, { windowClass: 'modal-lage', size: 'sm', centered: true }).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
@@ -310,33 +302,6 @@ export class DetailPageComponent implements OnInit {
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
-      // this.formOder.get('storeId').setValue(this.customer.getVoucher().data.storeId)
-      // this.formOder.get('voucherId').setValue(this.customer.getVoucher().data.id)
-      // this.formOder.get('accountId').setValue(this.customer.getAccount().data.account.id)
-      // if (this.formOder.valid) {
-      //   try {
-      //     console.log(this.formOder.value)
-      //     this.infoOder = this.formOder.value;
-      //     JSON.parse(localStorage.getItem('DATA_ADDRESS')).forEach(element => {
-      //       console.log(element)
-      //       console.log(this.infoOder.storeAddressId)
-      //       console.log(this.infoAddress)
-      //       if (element.id == this.infoOder.storeAddressId) {
-      //         this.infoAddress = element.address
-      //       }
-      //       console.log(this.infoAddress)
-
-      //     });
-
-      //     this.modalService.open(oder, { windowClass: 'modal-danger', size: 'lg', centered: true }).result.then((result) => {
-      //       this.closeResult = `Closed with: ${result}`;
-      //     }, (reason) => {
-      //       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      //     });
-      //   } catch (error) {
-      //     console.log(error)
-      //   }
-      // }
 
     } else {
       this.modalService.open(oder, { centered: true }).result.then((result) => {

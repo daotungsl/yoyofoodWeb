@@ -34,7 +34,7 @@
                                 {{dataProduct?.data.name}}</h4>
                         </div>
                         <div class="">
-                            Giá: {{dataProduct?.data.price}}đ
+                            Giá: {{dataProduct?.data.price | addDot}}
 
                         </div>
                         <div>
@@ -131,7 +131,7 @@
                                 </button> -->
 
                                 <button class="btn btn-outline-danger btn-rounded btn-block z-depth-0 my-4 waves-effect"
-                                    (click)="open(oder,login,success, 'modal_oder', '')">Thêm vào giỏ hàng</button>
+                                    (click)="open(oder,login, 'modal_oder', '')">Thêm vào giỏ hàng</button>
                                 <ng-template #oder let-c="close()" let-c="dismiss()">
                                     <div class="modal-content bg-gradient-info">
                                         <div class="modal-body">
@@ -235,7 +235,7 @@
                         {{dataProduct?.data.description}}
                     </span> -->
                     <hr>
-                    <a href="#" class="mb-3 text-danger">King BBQ trên YOYOFOOD &gt;&gt;</a>
+                    <a href="#" class="mb-3 text-danger"> YOYOFOOD &gt;&gt;</a>
                 </div>
             </div>
 

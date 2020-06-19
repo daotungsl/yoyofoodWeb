@@ -34,6 +34,7 @@ import { WebLayoutModule } from './layouts/web-layout/web-layout.module';
     AdminLayoutComponent,
     AuthLayoutComponent,
     WebLayoutComponent,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

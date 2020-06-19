@@ -1,158 +1,215 @@
 <!-- Header  -->
 <div class="new-feature-header-detail">
-  <app-header-web></app-header-web>
+    <app-header-web></app-header-web>
 
 </div>
 
-<!-- <h3>Cart Info</h3>
-<table border="1">
-    <tr>
-        <th>Option</th>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Photo</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Sub Total</th>
-    </tr>
-    <tr *ngFor="let item of items">
-        <td align="center">
-            <a (click)="remove(item.product.productId)">X</a>
-        </td>
-        <td>{{item.product.productId}}</td>
-        <!-- <td>{{item.product.name}}</td> 
-        <td>{{item.product.accountId}}</td>
-        <td>
-            <img src="assets/http://learningprogramming.net/wp-content/uploads/mean_stack/angular/{{item.product.photo}}" width="50">
-        </td>
-        <!-- <td>{{item.product.price}}</td> 
-        <td>{{item.product.adults}}</td>
-        <td>{{item.quantity}}</td>
-        <!-- <td>{{item.product.price * item.quantity}}</td> 
-    </tr>
-    <tr>
-        <td colspan="6" align="right">Total</td>
-        <td>{{total}}</td>
-    </tr>
-</table>  -->
-<section class="breadcrumb-section set-bg" data-setbg="assets/img/breadcrumb.jpg" style="background-image: url(&quot;assets/img/breadcrumb.jpg&quot;);">
-  <div class="container">
-      <div class="row">
-          <div class="col-lg-12 text-center">
-              <div class="breadcrumb__text">
-                  <h2>Shopping Cart</h2>
-                  <div class="breadcrumb__option">
-                      <a href="./index.html">Home</a>
-                      <span>Shopping Cart</span>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+<section class="breadcrumb-section set-bg" data-setbg="assets/img/breadcrumb.jpg"
+    style="background-image: url(&quot;assets/img/breadcrumb.jpg&quot;);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Shopping Cart</h2>
+                    <div class="breadcrumb__option">
+                        <a href="./index.html">Home</a>
+                        <span>Shopping Cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <section class="shoping-cart spad">
-  <div class="container">
-      <div class="row">
-          <div class="col-lg-12">
-              <div class="shoping__cart__table">
-                  <table>
-                      <thead>
-                          <tr>
-                              <th class="shoping__product">Products</th>
-                              <th>Price</th>
-                              <th>Quantity</th>
-                              <th>Total</th>
-                              <th></th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                        <ng-container *ngFor="let data of items">
-                          <tr>
-                              <td class="shoping__cart__item">
-                                  <img src="assets/img/cart/cart-1.jpg" alt="">
-                                  <h5>{{data.product.name}}</h5>
-                              </td>
-                              <td class="shoping__cart__price">
-                                {{data.product.price}}đ
-                              </td>
-                              <td class="shoping__cart__quantity">
-                                  <div class="quantity">
-                                      <div class="pro-qty">
-                                        <a (click)="sub(data.product.productId)"><span class="dec qtybtn">-</span></a>
-                                        <input type="text" value="{{data.quantity}}">
-                                        <a (click)="add(data.product.productId)"><span class="inc qtybtn">+</span></a>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td class="shoping__cart__total">
-                                {{data.product.price * data.quantity}}đ
-                              </td>
-                              <td class="shoping__cart__item__close">
-                                <a (click)="remove(data.product.productId)"><span class="icon_close"></span></a> 
-                              </td>
-                          </tr>
-                        </ng-container>
-                        
-                      </tbody>
-                  </table>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col-lg-12">
-              <div class="shoping__cart__btns">
-                  <a routerLink="/" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                  <!-- <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                      Upadate Cart</a> -->
-              </div>
-          </div>
-          <div class="col-lg-6">
-              <div class="shoping__continue">
-                  <div class="shoping__discount">
-                      <h5>Discount Codes</h5>
-                      <form action="#">
-                          <input type="text" placeholder="Enter your coupon code">
-                          <button type="submit" class="site-btn">APPLY COUPON</button>
-                      </form>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-6">
-              <div class="shoping__checkout">
-                  <h5>Cart Total</h5>
-                  <ul>
-                      <li>Subtotal <span>{{total}}đ</span></li>
-                      <li>Total <span>{{total}}đ</span></li>
-                  </ul>
-                  <!-- <a (click)="checkOut()" class="primary-btn">PROCEED TO CHECKOUT</a> -->
-                  <button class="btn btn-outline-success btn-rounded btn-block z-depth-0 my-4 waves-effect"
-                                    (click)="open(oder,login,success, 'modal_oder', '')">PROCEED TO CHECKOUT</button>
-                                <ng-template #oder let-c="close()" let-c="dismiss()">
-                                    <div class="modal-content bg-gradient-info">
-                                        <div class="modal-body">
-                                            <div class="py-3 text-center">
-                                                <i class="ni ni-bell-55 ni-3x"></i>
-                                                <h4 class=" heading mt-4">Đặt hàng thành công
-                                                </h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="shoping__product">Sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let data of items">
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <img src="assets/img/cart/cart-1.jpg" alt="">
+                                        <h5>{{data.product.name}}</h5>
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        {{data.product.price | addDot}}
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <a (click)="sub(data.product.productId)"><span
+                                                        class="dec qtybtn">-</span></a>
+                                                <input type="text" value="{{data.quantity}}">
+                                                <a (click)="add(data.product.productId)"><span
+                                                        class="inc qtybtn">+</span></a>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
+                                    </td>
+                                    <td class="shoping__cart__total">
+                                        {{data.product.price * data.quantity | addDot}}
+                                    </td>
+                                    <td class="shoping__cart__item__close">
+                                        <a (click)="remove(data.product.productId)"><span class="icon_close"></span></a>
+                                    </td>
+                                </tr>
+                            </ng-container>
 
-                                            <!-- <button [disabled]="!isValid" type="button" class="btn btn-white"
-                                                (click)="c">Xác nhận</button> -->
-                                                <button type="button" class="btn btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__btns">
+                    <a routerLink="/" class="primary-btn cart-btn">Tiếp tục mua sắm</a>
+                    <!-- <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+                      Upadate Cart</a> -->
+                    <div class="primary-btn cart-btn cart-btn-right">
+                        Phương thức thanh toán
+                        <hr>
+                        <div class="custom-control custom-radio mb-3">
+                            <input name="custom-radio-2" class="custom-control-input" id="customRadio5" type="radio"
+                                (click)="open(oder,info, 'modal_edit', '')">
+                            <label class="custom-control-label" for="customRadio5">Thẻ</label>
+                        </div>
+                        <div class="custom-control custom-radio mb-3">
+                            <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked=""
+                                type="radio" (change)="sec($event)">
+                            <label class="custom-control-label" for="customRadio6">Tiền mặt</label>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="shoping__continue">
+                    <div class="shoping__discount">
+                        <h5>Mã giảm giá</h5>
+                        <form action="#">
+                            <input type="text" placeholder="Nhập mã giảm giá của bạn">
+                            <button type="submit" class="site-btn">ÁP DỤNG</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="shoping__checkout">
+                    <h5>Tổng số giỏ hàng</h5>
+                    <ul>
+                        <li>Subtotal <span>{{total | addDot}}</span></li>
+                        <li>Total <span>{{total | addDot}}</span></li>
+                    </ul>
+                    <!-- <a (click)="checkOut()" class="primary-btn">PROCEED TO CHECKOUT</a> -->
+                    <button class="btn btn-outline-success btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                        (click)="open(oder, info, 'modal_oder', '')">ĐẶT HÀNG</button>
+                    <ng-template #oder let-c="close()" let-c="dismiss()">
+                        <div class="modal-content bg-gradient-info">
+                            <div class="modal-body">
+                                <div class="py-3 text-center">
+                                    <i class="ni ni-bell-55 ni-3x"></i>
+                                    <h4 class=" heading mt-4">Đang tiến hành đặng hàng
+                                    </h4>
+                                    <img src="assets/gif/Infinity-1s-200px.gif" alt="">
+                                </div>
+                            </div>
+                            <!-- <div class="modal-footer">
+
+                                <button [disabled]="!isValid" type="button" class="btn btn-white"
+                                                (click)="c">Xác nhận</button>
+                                <button type="button" class="btn btn-rounded btn-block z-depth-0 my-4 waves-effect"
                                                 data-dismiss="modal" (click)="c">Xác nhận</button>
-                                        </div>
-                                    </div>
+                            </div> -->
+                        </div>
 
-                                </ng-template>
-              </div>
-          </div>
-      </div>
-  </div>
+                    </ng-template>
+
+                    <ng-template #info let-c="close()" let-d="dismiss()">
+                        <div class="modal-content">
+                            <div class="modal-body ">
+                                <div class="card bg-secondary shadow border-0">
+
+                                    <div class="card-body px-lg-5 py-lg-5">
+                                        <div class="text-center text-muted mb-4">
+                                            <h2>Thông tin thẻ</h2>
+                                        </div>
+                                        <form role="form">
+                                            <div class="form-group">
+                                                <label for="username">Họ tên đẩy (trên thẻ)</label>
+                                                <input type="text" name="username" placeholder="Họ và tên không dấu" required
+                                                    class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cardNumber">Mã số thẻ</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="cardNumber" placeholder="Mã số trên thẻ của bạn"
+                                                        class="form-control" required>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text text-muted">
+                                                            <i class="fa fa-cc-visa mx-1"></i>
+                                                            <i class="fa fa-cc-amex mx-1"></i>
+                                                            <i class="fa fa-cc-mastercard mx-1"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <div class="form-group">
+                                                        <label><span class="hidden-xs">Ngày hết hạn</span></label>
+                                                        <div class="input-group">
+                                                            <input type="number" placeholder="MM" name=""
+                                                                class="form-control" required>
+                                                            <input type="number" placeholder="YY" name=""
+                                                                class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group mb-4">
+                                                        <label data-toggle="tooltip"
+                                                            title="Three-digits code on the back of your card">CVV
+                                                            <i class="fa fa-question-circle"></i>
+                                                        </label>
+                                                        <input type="text" required class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                                <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"
+                                                data-dismiss="modal" (click)="c">Xác nhận</button>
+                                        </form>
+
+
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- Footer  -->
 
 <div class="footer">
-  <app-footer-web></app-footer-web>
+    <app-footer-web></app-footer-web>
 </div>

@@ -23,8 +23,8 @@ export class CartPageComponent implements OnInit {
 
 	constructor(
 		private customer: CustomerService,
-    private modalService: NgbModal,
-	private router: Router,
+		private modalService: NgbModal,
+		private router: Router,
 		private serviceProduct: ProductsService
 	) { }
 
@@ -126,6 +126,20 @@ export class CartPageComponent implements OnInit {
 		this.loadCart();
 
 	}
+	card(event) {
+		console.log(event);
+		if (event.target.checked) {
+			this.typePay = 1
+		}
+
+	}
+	sec(event) {
+		console.log(event);
+		if (event.target.checked) {
+			this.typePay = 0
+		}
+
+	}
 	checkOut(): void {
 		let cart: any = this.customer.getCart();
 		var order = {};
@@ -142,73 +156,72 @@ export class CartPageComponent implements OnInit {
 			order['orderDetails'][i]['quantity'] = item.quantity;
 			order['orderDetails'][i]['unitPrice'] = item.product.price;
 		}
-		
+
 		console.log(order);
 		this.serviceProduct.tryOder(order)
-		.subscribe({
-		  next: value => {
-			console.log(value)
-			this.customer.removeCart();
-			this.router.navigateByUrl('/');
-		  },
-		  error: err => {
-			console.log(err)
-  
-		  }
-		})
+			.subscribe({
+				next: value => {
+					console.log(value)
+					this.customer.removeCart();
+					this.router.navigateByUrl('/');
+				},
+				error: err => {
+					console.log(err)
+
+				}
+			})
 	}
 
-	open(oder, login, success, type, modalDimension) {
-	
-		this.modalSuccess = success;
-		if (modalDimension === 'sm' && type === 'modal_add') {
-		  this.modalService.open(oder, { windowClass: 'modal-lage', size: 'sm', centered: true }).result.then((result) => {
-			this.closeResult = `Closed with: ${result}`;
-		  }, (reason) => {
-			this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-		  });
-		} else if (modalDimension === 'sm' && type === 'modal_edit') {
-		  this.modalService.open(oder, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
-			this.closeResult = `Closed with: ${result}`;
-		  }, (reason) => {
-			this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-		  });
-		} else if (modalDimension === '' && type === 'modal_oder') {
-	
-		  if (!this.customer.getAccount()) {
-			this.modalService.open(login, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
-			  this.closeResult = `Closed with: ${result}`;
+	open(oder, info, type, modalDimension) {
+		if (modalDimension === '' && type === 'modal_add') {
+			this.modalService.open(oder, { windowClass: 'modal-lage', size: 'sm', centered: true }).result.then((result) => {
+				this.closeResult = `Closed with: ${result}`;
 			}, (reason) => {
-			  this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
 			});
-		  }
-		  this.checkOut()
-		  this.modalService.open(oder, { windowClass: 'modal-danger', size: 'sm', centered: true }).result.then((result) => {
-			this.closeResult = `Closed with: ${result}`;
-		  }, (reason) => {
-			this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-		  });
-	
+		} else if (modalDimension === '' && type === 'modal_edit') {
+			this.typePay = 1
+			this.modalService.open(info, { windowClass: 'modal-lage', size: 'sm', centered: true }).result.then((result) => {
+				this.closeResult = `Closed with: ${result}`;
+				this.checkOut();
+				this.modalService.open(oder, { windowClass: 'modal-danger', size: 'sm', centered: true }).result.then((result) => {
+					this.closeResult = `Closed with: ${result}`;
+				}, (reason) => {
+					this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+				});
+			}, (reason) => {
+				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+				console.log("modal 2")
+
+			});
+		} else if (modalDimension === '' && type === 'modal_oder') {
+			this.checkOut();
+			this.modalService.open(oder, { windowClass: 'modal-danger', size: 'sm', centered: true }).result.then((result) => {
+				this.closeResult = `Closed with: ${result}`;
+			}, (reason) => {
+				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+			});
+
 		} else {
-		  this.modalService.open(oder, { centered: true }).result.then((result) => {
-			this.closeResult = `Closed with: ${result}`;
-		  }, (reason) => {
-			this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-		  });
+			this.modalService.open(oder, { centered: true }).result.then((result) => {
+				this.closeResult = `Closed with: ${result}`;
+			}, (reason) => {
+				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+			});
 		}
-	
-	
-	
-	
-	  }
-	  private getDismissReason(reason: any): string {
+
+
+
+
+	}
+	private getDismissReason(reason: any): string {
 		if (reason === ModalDismissReasons.ESC) {
-		  return 'by pressing ESC';
+			return 'by pressing ESC';
 		} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-		  return 'by clicking on a backdrop';
+			return 'by clicking on a backdrop';
 		} else {
-		  return `with: ${reason}`;
+			return `with: ${reason}`;
 		}
-	  }
+	}
 
 }

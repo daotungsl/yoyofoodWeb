@@ -109,8 +109,7 @@ export class WebLayoutService {
   }
   getAllProductByType(value): Observable<IAllProduct> {
     return this.http.get<IAllProduct>(
-      `${API_DOMAIN}unauthentic/type-products/type-product/${value}/products`
-
+      `${API_DOMAIN}unauthentic/stores/type-product/${value}/products`
     ).pipe(
       map(res => {
         console.log(res);
