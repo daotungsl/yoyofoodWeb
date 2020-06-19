@@ -9,6 +9,7 @@ import { ShopComponent } from 'src/app/modules/shop-view/shops/shop/shop.compone
 import { ShopAddComponent } from 'src/app/modules/shop-view/shops/shop-add/shop-add.component';
 import { ShopAuthGuard } from 'src/app/auth/auth-shop.guard';
 import { ProductComponent } from 'src/app/modules/shop-view/product/product/product.component';
+import { TransactionComponent } from 'src/app/modules/shop-view/transaction/transaction/transaction.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'prefix'},
@@ -31,6 +32,16 @@ export const AdminLayoutRoutes: Routes = [
             {
                 path: '',
                 loadChildren: 'src/app/modules/shop-view/product/products.module#ProductModule',
+            }
+        ]
+    },
+    {   path: 'transaction',
+        component: TransactionComponent,
+        canActivate:[ShopAuthGuard],
+        children: [
+            {
+                path: '',
+                loadChildren: 'src/app/modules/shop-view/transaction/transaction.module#TransactionModule',
             }
         ]
     },

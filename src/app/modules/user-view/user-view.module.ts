@@ -27,7 +27,6 @@ import { AddDot } from 'src/app/shared/add-dot.pipe';
     CategoryMainContentComponent,
     CardItemComponent,
     HomeTopHotDealComponent,
-    AddDot,
 
     
   ],
@@ -36,7 +35,6 @@ import { AddDot } from 'src/app/shared/add-dot.pipe';
     CategoryPageComponent,
     CategoryPageTopComponent,
     CategoryMainContentComponent,
-    AddDot
 
   ]
 

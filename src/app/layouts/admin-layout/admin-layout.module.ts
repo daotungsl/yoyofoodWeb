@@ -16,6 +16,7 @@ import { VoucherModule } from 'src/app/modules/shop-view/vouchers/vouchers.modul
 import { ProductModule } from 'src/app/modules/shop-view/product/products.module';
 import { ShopsModule } from 'src/app/modules/shop-view/shops/shops.module';
 import { ShopAuthGuard } from 'src/app/auth/auth-shop.guard';
+import { TransactionModule } from 'src/app/modules/shop-view/transaction/transaction.module';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { ShopAuthGuard } from 'src/app/auth/auth-shop.guard';
     VoucherModule,
     ProductModule,
     ShopsModule,
+    TransactionModule,
     ClipboardModule,
     SharedModule
 
@@ -37,7 +39,7 @@ import { ShopAuthGuard } from 'src/app/auth/auth-shop.guard';
     DashboardComponent,
     TablesComponent,
     IconsComponent,
-    MapsComponent
+    MapsComponent,
   ],
   providers: [
     ShopAuthGuard

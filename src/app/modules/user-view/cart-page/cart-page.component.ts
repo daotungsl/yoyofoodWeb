@@ -148,7 +148,7 @@ export class CartPageComponent implements OnInit {
 		order['total'] = this.total;
 		order['typePay'] = this.typePay;
 		order['orderDetails'] = [];
-		order['orderDetails'].push({})
+		// order['orderDetails'].push({})
 		order['orderDetails'].unshift({});
 		for (var i = 0; i < cart.length; i++) {
 			let item: Item = JSON.parse(cart[i]);

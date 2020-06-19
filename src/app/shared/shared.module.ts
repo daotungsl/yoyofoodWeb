@@ -4,11 +4,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { LangPipe } from './lang/lang.pipe';
 import { AddTimePipePipe } from './add-time-pipe.pipe';
+import { AddDot } from './add-dot.pipe';
 
 
 
 @NgModule({
-  declarations: [LangPipe,AddTimePipePipe ],
+  declarations: [LangPipe,AddTimePipePipe,AddDot ],
   imports: [
     CommonModule,
     FormsModule,
@@ -21,7 +22,9 @@ import { AddTimePipePipe } from './add-time-pipe.pipe';
     ReactiveFormsModule,
     HttpClientModule,
     LangPipe,
-    AddTimePipePipe
+    AddTimePipePipe,
+    AddDot
+
   ]
 })
 export class SharedModule { }
