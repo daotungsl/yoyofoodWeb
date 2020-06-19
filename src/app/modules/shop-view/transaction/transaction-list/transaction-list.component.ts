@@ -3,6 +3,7 @@ import { CustomerService } from 'src/app/auth/customer.service';
 import { WebLayoutService } from 'src/app/layouts/web-layout/web-layout.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { TransactionService } from '../transaction.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transaction-list',
@@ -10,13 +11,14 @@ import { TransactionService } from '../transaction.service';
   styleUrls: ['./transaction-list.component.scss']
 })
 export class TransactionListComponent implements OnInit {
-  datasTransaction :any;
+  datasTransaction: any;
   closeResult: string;
-  car:any;
+  car: any;
   constructor(
     private transactionService: TransactionService,
     private webService: WebLayoutService,
     private modalService: NgbModal,
+    private router: Router,
     private customer: CustomerService,
 
 
@@ -42,7 +44,7 @@ export class TransactionListComponent implements OnInit {
   }
   open(content, type, modalDimension, data) {
 
-
+    console.log(data);
 
     if (modalDimension === 'sm' && type === 'modal_add') {
       this.modalService.open(content, { windowClass: 'modal-lage', size: 'sm', centered: true }).result.then((result) => {
@@ -50,9 +52,9 @@ export class TransactionListComponent implements OnInit {
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       });
-    } else if (modalDimension === 'sm' && type === 'modal_edit') {
+    } else if (modalDimension === 'lg' && type === 'modal_edit') {
 
-      this.modalService.open(content, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
+      this.modalService.open(content, { windowClass: 'modal-mini', size: 'lg', centered: true }).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -81,5 +83,46 @@ export class TransactionListComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-  
+  doConfirm(data: any){
+
+    this.transactionService.tryConfirmOrder(data,1)
+    .subscribe({
+      next: value => {
+        console.log(value)
+        this.ngOnInit();
+        this.modalService.dismissAll();
+      },
+      error: err => {
+        console.log(err)
+      }
+    });
+  }
+  doComplete(data: any){
+    this.transactionService.tryConfirmOrder(data,2)
+    .subscribe({
+      next: value => {
+        this.ngOnInit();
+        this.modalService.dismissAll();
+        console.log(value)
+      },
+      error: err => {
+        console.log(err)
+      }
+    });
+  }
+  doCancelled(data: any){
+    this.transactionService.tryConfirmOrder(data,-1)
+    .subscribe({
+      next: value => {
+        this.ngOnInit();
+        this.modalService.dismissAll();
+        console.log(value)
+      },
+      error: err => {
+        console.log(err)
+      }
+    });
+  }
+
+
 }

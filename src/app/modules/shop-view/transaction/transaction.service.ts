@@ -57,4 +57,25 @@ export class TransactionService {
     })
   );
   }
+
+  tryConfirmOrder(id:any,status:any): Observable<any>{
+    console.log(localStorage.getItem('STORE_TOKEN'))
+    return this.http.put<any>(
+      `${API_DOMAIN}api/guest/orders/order/${id}/${status}`,
+      status,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('STORE_TOKEN'),
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+      }
+    }
+  ).pipe(
+    map(res => {
+      console.log(res);
+      return res;
+    })
+  );
+  }
 }

@@ -5,152 +5,237 @@
             <div class="card shadow">
                 <div class="card-header border-0">
                     <h2 class="mb-0 d-inline-block">Transaction List</h2>
-                </div>
-                <div class="row">
-                    <div class="table-responsive">
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">User</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">TypePay</th>
-                                    <th scope="col">Total</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Acction</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let data of datasTransaction">
-                                    <th scope="row">
-                                        <div class="media align-items-center">
-                                            <!-- <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
-                        <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
-                      </a> -->
-                                            <div class="media-body under-cut">
-                                                <span class="mb-0 text-sm">{{data.username}}</span>
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">User</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">TypePay</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Acction</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of datasTransaction">
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <!-- <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                            <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
+                          </a> -->
+                                                <div class="media-body under-cut">
+                                                    <span class="mb-0 text-sm">{{data.username}}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </th>
-                                    <td>
-                                        
-                                        <div *ngIf="data.description == null">
-                                            Không có ghi chú
-                                        </div>
-                                        <div *ngIf="data.description != null">
-                                            {{data.description}}
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <div *ngIf="data.typePay == 0">
-                                            Tiền mặt
-                                        </div>
-                                        <div *ngIf="data.typePay == 1">
-                                            Thẻ
-                                        </div>
-                                    </td>
-                                    <td>
-                                        {{data.total | addDot }}
-                                    </td>
-                                    <td>
-                                        <div *ngIf="data.status == -1">
-                                            <span class="badge badge-dot mr-4">
-                                                <i class="bg-danger"></i> Cancelled
-                                            </span>
-                                        </div>
-                                        <div *ngIf="data.status == 1">
-                                            <span class="badge badge-dot mr-4">
-                                                <i class="bg-success"></i> Confirm
-                                            </span>
-                                        </div>
-                                        <div *ngIf="data.status == 2">
-                                            <span class="badge badge-dot mr-4">
-                                                <i class="bg-success"></i> Complete
-                                            </span>
-                                        </div>
-                                        <div *ngIf="data.status == 0">
-                                            <span class="badge badge-dot mr-4">
-                                                <i class="bg-warning"></i> Pending
-                                            </span>
-                                        </div>
-
-
-                                    </td>
-                                    <td>
-
-                                        <div class="">
-                                            <!-- edit -->
-                                            <button class="btn  btn-info text-center"
-                                                (click)="open(classic2, 'modal_edit', 'sm', data)">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <!-- delete -->
-                                            <!-- <button class="btn  btn-danger text-center"
-                                                (click)="open(classic3, 'modal_delete', '', data)">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button> -->
-                                        </div>
-
-
-                                        <!-- Modan -->
-
-
-                                        <!-- Edit  -->
-                                        <ng-template #classic2 let-c="close()" let-d="dismiss()">
-                                            <div class="modal-content">
-                                                <div class="modal-body ">
-                                                    <div class="card bg-secondary shadow border-0">
-                                                      
+                                        </th>
+                                        <td>
+    
+                                            <div *ngIf="data.description == null">
+                                                Không có ghi chú
+                                            </div>
+                                            <div *ngIf="data.description != null">
+                                                {{data.description}}
+                                            </div>
+                                        </td>
+    
+                                        <td>
+                                            <div *ngIf="data.typePay == 0">
+                                                Tiền mặt
+                                            </div>
+                                            <div *ngIf="data.typePay == 1">
+                                                Thẻ
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {{data.total | addDot }}
+                                        </td>
+                                        <td>
+                                            <div *ngIf="data.status == -1">
+                                                <span class="badge badge-dot mr-4">
+                                                    <i class="bg-danger"></i> Cancelled
+                                                </span>
+                                            </div>
+                                            <div *ngIf="data.status == 1">
+                                                <span class="badge badge-dot mr-4">
+                                                    <i class="bg-success"></i> Confirm
+                                                </span>
+                                            </div>
+                                            <div *ngIf="data.status == 2">
+                                                <span class="badge badge-dot mr-4">
+                                                    <i class="bg-success"></i> Complete
+                                                </span>
+                                            </div>
+                                            <div *ngIf="data.status == 0">
+                                                <span class="badge badge-dot mr-4">
+                                                    <i class="bg-warning"></i> Pending
+                                                </span>
+                                            </div>
+    
+    
+                                        </td>
+                                        <td>
+    
+                                            <div class="">
+                                                <!-- edit -->
+                                                <button class="btn  btn-info text-center"
+                                                    (click)="open(classic2, 'modal_edit', 'lg', data)">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <!-- delete -->
+                                                <!-- <button class="btn  btn-danger text-center"
+                                                    (click)="open(classic3, 'modal_delete', '', data)">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button> -->
+                                            </div>
+    
+    
+                                            <!-- Modan -->
+    
+    
+                                            <!-- Edit  -->
+                                            <ng-template #classic2 let-c="close()" let-d="dismiss()">
+                                                <div class="modal-content">
+                                                    <div class="modal-body ">
+                                                        <div class="card bg-secondary shadow border-0">
+    
                                                             <h3 class=" text-center mb-4">Transaction Detail</h3>
-                                                            
+                                                            <div class="row">
+                                                                <div class="table-responsive">
+                                                                    <table class="table align-items-center table-flush">
+                                                                        <thead class="thead-light">
+                                                                            <tr>
+                                                                                <th scope="col">Tên sản phẩm</th>
+                                                                                <th scope="col">Số lượng</th>
+                                                                                <th scope="col">Đơn giá</th>
+                                                                                <th scope="col">Thành tiền</th>
+                                                                                <th scope="col">Ngày mua</th>
+                                                                                <th scope="col">Trạng thái</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr *ngFor="let element of data.orderDetails">
+                                                                                <th scope="row">
+                                                                                    <div class="media align-items-center">
+                                                                                            <span
+                                                                                                class="mb-0 text-sm">{{element.product_name}}</span>
+                                                                                    </div>
+                                                                                </th>
+                                                                             
+                                                                                <td>
+                                                                                    <div>
+                                                                                        {{element.quantity}}
+                                                                                    </div>
+                                                                                </td>
+    
+                                                                                <td>
+                                                                                    <div>
+                                                                                        {{element.unitPrice | addDot }}
+    
+                                                                                    </div>
+    
+                                                                                </td>
+                                                                                <td>
+                                                                                    {{element.unitPrice * element.quantity | addDot }}
+                                                                                </td>
+                                                                                <td>
+                                                                                    {{element.created | date:'short' }}
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div *ngIf="data.status == -1">
+                                                                                        <span class="badge badge-dot mr-4">
+                                                                                            <i class="bg-danger"></i>
+                                                                                            Cancelled
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div *ngIf="data.status == 1">
+                                                                                        <span class="badge badge-dot mr-4">
+                                                                                            <i class="bg-success"></i>
+                                                                                            Confirm
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div *ngIf="data.status == 2">
+                                                                                        <span class="badge badge-dot mr-4">
+                                                                                            <i class="bg-success"></i>
+                                                                                            Complete
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div *ngIf="data.status == 0">
+                                                                                        <span class="badge badge-dot mr-4">
+                                                                                            <i class="bg-warning"></i>
+                                                                                            Pending
+                                                                                        </span>
+                                                                                    </div>
+    
+    
+                                                                                </td>
+    
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+    
+                                                            <hr>
                                                             <div>
                                                                 <button class="btn btn-icon btn-primary"
-                                                                    (click)="doSubmitUpdate()">
-                                                                    <span class="btn-inner--text">Submit</span>
+                                                                    (click)="doConfirm(data.id)">
+                                                                    <span class="btn-inner--text">Xác nhận</span>
+                                                                </button>
+                                                                <button class="btn btn-icon btn-success"
+                                                                    (click)="doComplete(data.id)">
+                                                                    <span class="btn-inner--text">Hoàn thành</span>
+                                                                </button>
+                                                                <button class="btn btn-icon btn-warning"
+                                                                    (click)="doCancelled(data.id)">
+                                                                    <span class="btn-inner--text">Hủy bỏ</span>
                                                                 </button>
                                                                 <button type="button"
                                                                     class="btn btn-icon btn-warning float-right"
-                                                                    data-dismiss="modal" (click)="d">Cancle</button>
+                                                                    data-dismiss="modal" (click)="d">Thoát</button>
                                                             </div>
-
-                                                       
+    
+    
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </ng-template>
-
-                                        <!-- Delete  -->
-                                        <!-- <ng-template #classic3 let-c="close()" let-d="dismiss()">
-                                            <div class="modal-content bg-gradient-danger">
-                                                <div class="modal-body">
-                                                    <div class="py-3 text-center">
-                                                        <i class="ni ni-bell-55 ni-3x"></i>
-                                                        <h4 class="heading mt-4">Are you sure you want to delete address
-                                                        </h4>
-                                                        <p>{{data.address}}</p>
-                                                        <h4 class="heading mt-4">With Status
-                                                        </h4>
-                                                        <p *ngIf="data.status === 0">Cancelled </p>
-                                                        <p *ngIf="data.status === 1">Completed </p>
-                                                        <p *ngIf="data.status === 2">Pending </p>
-
+                                            </ng-template>
+    
+                                            <!-- Delete  -->
+                                            <!-- <ng-template #classic3 let-c="close()" let-d="dismiss()">
+                                                <div class="modal-content bg-gradient-danger">
+                                                    <div class="modal-body">
+                                                        <div class="py-3 text-center">
+                                                            <i class="ni ni-bell-55 ni-3x"></i>
+                                                            <h4 class="heading mt-4">Are you sure you want to delete address
+                                                            </h4>
+                                                            <p>{{data.address}}</p>
+                                                            <h4 class="heading mt-4">With Status
+                                                            </h4>
+                                                            <p *ngIf="data.status === 0">Cancelled </p>
+                                                            <p *ngIf="data.status === 1">Completed </p>
+                                                            <p *ngIf="data.status === 2">Pending </p>
+    
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-white" (click)="doDelete()">Ok,
+                                                            Got it</button>
+                                                        <button type="button" class="btn btn-link text-white ml-auto"
+                                                            data-dismiss="modal" (click)="c">Close</button>
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-white" (click)="doDelete()">Ok,
-                                                        Got it</button>
-                                                    <button type="button" class="btn btn-link text-white ml-auto"
-                                                        data-dismiss="modal" (click)="c">Close</button>
-                                                </div>
-                                            </div>
-                                        </ng-template> -->
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                            </ng-template> -->
+    
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+               
 
 
 
