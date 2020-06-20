@@ -155,6 +155,7 @@ export class CartPageComponent implements OnInit {
 			order['orderDetails'][i]['product_id'] = item.product.productId;
 			order['orderDetails'][i]['quantity'] = item.quantity;
 			order['orderDetails'][i]['unitPrice'] = item.product.price;
+			order['orderDetails'][i]['product_name'] = item.product.name;
 		}
 
 		console.log(order);
