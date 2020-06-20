@@ -96,7 +96,7 @@ name: [null, [Validators.required, Validators.maxLength(200)]],
 tryOder(value): Observable<any>{
   console.log(HTTP_HEADER);
   return this.http.post<any>(
-    `${API_DOMAIN}api/guest/Orders/order`,
+    `${API_DOMAIN}api/guest/orders/order`,
   value,
   {
     headers: {
